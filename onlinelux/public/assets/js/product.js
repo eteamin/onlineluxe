@@ -1,6 +1,6 @@
-var base_url = window.origin;
+var baseUrl = window.location.origin;
 requirejs.config({
-    "baseUrl": base_url + "/assets/js",
+    "baseUrl": baseUrl + "/assets/js",
     paths: {
         "common": "common",
         "jquery": "../libs/jquery/dist/jquery",

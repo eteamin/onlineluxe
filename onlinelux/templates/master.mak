@@ -539,7 +539,7 @@
     </footer>
 
 </body>
-<script data-main="${base_url}/assets/js/index.js" src="${base_url}/assets/libs/requirejs/require.js"></script>
+
 ## <script>
 ##   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 ##   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -551,3 +551,4 @@
 ##
 ## </script>
 </html>
+

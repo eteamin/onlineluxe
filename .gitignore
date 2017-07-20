@@ -91,6 +91,6 @@ ENV/
 
 #Pycharm
 .idea/
-storage/
+onlinelux/public/storage/
 
 .DS_Store

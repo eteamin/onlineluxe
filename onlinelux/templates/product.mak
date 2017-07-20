@@ -4,6 +4,7 @@
         return s.split(',') if isinstance(s, str) else None
     from khayyam import JalaliDatetime
 %>
+
 <section class="page-top">
     <div class="container">
         <div class="page-breadcrumb">
@@ -249,4 +250,4 @@
     <!-- container -->
 </main>
 <!-- page-main -->
-<script data-main="${base_url}/assets/js/product.js" src="${base_url}/assets/libs/requirejs/require.js"></script>
+<script data-main="${tg.url('/assets/js/product.js')}" src="${tg.url('/assets/libs/requirejs/require.js')}"></script>

@@ -388,3 +388,4 @@
 
     </div>
 </section>
+<script data-main="assets/js/index.js" src="${tg.url('/assets/libs/requirejs/require.js')}"></script>

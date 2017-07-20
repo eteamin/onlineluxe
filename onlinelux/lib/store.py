@@ -7,7 +7,7 @@ from cgi import FieldStorage
 import onlinelux
 
 
-STORAGE_PATH = path.abspath(path.join(path.dirname(onlinelux.__file__), 'storage'))
+STORAGE_PATH = path.abspath(path.join(path.dirname(onlinelux.__file__), 'public', 'storage'))
 
 
 class StorageManager:
