@@ -1,13 +1,20 @@
+from os import path
+
 import random
 import string
 from cgi import FieldStorage
+
+import onlinelux
+
+
+STORAGE_PATH = path.abspath(path.join(path.dirname(onlinelux.__file__), 'storage'))
 
 
 class StorageManager:
     """Images Storage"""
 
-    def __init__(self, storage_path):
-        self.storage_path = storage_path
+    def __init__(self):
+        self.storage_path = STORAGE_PATH
 
     def store(self, data: FieldStorage):
         extension = self.tell_extension(data)

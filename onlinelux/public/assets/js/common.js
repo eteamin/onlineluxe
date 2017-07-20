@@ -85,13 +85,9 @@ define([
             var username = $('#username').val();
             var password = $('#password').val();
             var base_url = window.location.origin;
-            var formData = new FormData();
-	        formData.append('username', username);
-	        formData.append('password', password);
             $.ajax({
-               url : base_url + '/login_handler',
-               type : 'POST',
-               data : formData,
+               url : base_url + '/login_handler?login=' + username + '&password=' + password,
+               type : 'GET',
                processData: false,
                contentType: false,
                success : function(resp) {

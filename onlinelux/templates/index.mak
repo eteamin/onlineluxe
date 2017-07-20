@@ -1,4 +1,4 @@
-<%inherit file="local:templates.scaffold"/>
+<%inherit file="local:templates.master"/>
 <%
     def split_by_comma(s):
         return s.split(',') if isinstance(s, str) else None
@@ -388,4 +388,3 @@
 
     </div>
 </section>
-<script data-main="assets/js/index.js" src="${base_url}/assets/libs/requirejs/require.js"></script>
