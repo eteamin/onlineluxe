@@ -1,0 +1,59 @@
+@import
+   "../libs/bootstrap/dist/css/bootstrap.min.css",
+   "../libs/font-awesome/css/font-awesome.min.css",
+   "../libs/owl.carousel/dist/assets/owl.carousel.min.css",
+   "../../app/assets/libs/sass-flex-mixin/flex",
+   "public/variable",
+   "public/mixin",
+   "public/fonts",
+   "../libs/iCheck/skins/all.css",
+   "../libs/PikaChoose/styles/left.css",
+   "../libs/select2/dist/css/select2.min.css",
+   "../libs/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css",
+   "../libs/raty/lib/jquery.raty.css",
+   "../fonts/icomoon/style.css"
+;
+
+html{
+   font-size: 62%
+}
+body{
+   background-color: #ffffff;
+   color: $color-text;
+   font: $font-size $font-family-iransans;
+   direction: $direction;
+   line-height: 1.5;
+}
+
+ul,ol,li,h1,h2,h3,h4,h5,h6,p{
+   margin: 0;
+   padding: 0;
+   list-style: none;
+}
+a{
+   color: $color-text;
+   &:hover{
+      color: $color-text;
+      text-decoration: none;
+   }
+}
+
+.horizental-flex-container{
+   @include flexbox;
+   @include flex-direction(row);
+   @include justify-content(space-between);
+   @include align-items(center);
+}
+
+.section{
+   padding: $padding-vertical;
+}
+.bg-white{
+   background-color: #fff;
+}
+
+@import
+   "components/header",
+   "pages/pages",
+   "components/footer"
+;

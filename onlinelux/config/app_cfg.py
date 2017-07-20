@@ -8,7 +8,8 @@ This file complements development/deployment.ini.
 from tg.configuration import AppConfig
 
 import onlinelux
-from onlinelux import model, lib
+from onlinelux import model
+from onlinelux.lib.helpers import add_global_template_variables
 
 base_config = AppConfig()
 base_config.renderers = []
@@ -134,6 +135,7 @@ base_config.sa_auth.post_login_url = '/post_login'
 # You may optionally define a page where you want users to be redirected to
 # on logout:
 base_config.sa_auth.post_logout_url = '/post_logout'
+base_config.variable_provider = add_global_template_variables
 try:
     # Enable DebugBar if available, install tgext.debugbar to turn it on
     from tgext.debugbar import enable_debugbar

@@ -1,0 +1,15 @@
+{
+  "name": "PikaChoose",
+  "homepage": "https://github.com/jeremyfry/PikaChoose",
+  "version": "4.5.0",
+  "_release": "4.5.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v4.5.0",
+    "commit": "eb8e615febe3eb603fc33785a25ad1745e778a80"
+  },
+  "_source": "https://github.com/jeremyfry/PikaChoose.git",
+  "_target": "^4.5.0",
+  "_originalSource": "https://github.com/jeremyfry/PikaChoose.git",
+  "_direct": true
+}

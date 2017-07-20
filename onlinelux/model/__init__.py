@@ -59,5 +59,9 @@ def init_model(engine):
 
 # Import your model modules here.
 from onlinelux.model.auth import User, Group, Permission
+from onlinelux.model.article import Article
+from onlinelux.model.category import Category, SubCategory, Product, Purchase, Comment
+from onlinelux.model.picture import Picture
+
 
 __all__ = ('User', 'Group', 'Permission')

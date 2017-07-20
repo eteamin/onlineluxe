@@ -4,6 +4,9 @@ import logging
 from markupsafe import Markup
 from datetime import datetime
 
+from tg import session, config
+from khayyam import JalaliDate
+
 log = logging.getLogger(__name__)
 
 
@@ -16,10 +19,16 @@ def icon(icon_name):
     return Markup('<i class="glyphicon glyphicon-%s"></i>' % icon_name)
 
 
-# Import commonly used helpers from WebHelpers2 and TG
-from tg.util.html import script_json_encode
-
 try:
     from webhelpers2 import date, html, number, misc, text
 except SyntaxError:
     log.error("WebHelpers2 helpers not available with this Python Version")
+
+
+def add_global_template_variables():
+    return dict(
+        today=JalaliDate.today().strftime('%A %d %B %Y'),
+        time=datetime.now().strftime('%H:%M:%S'),
+        session=session,
+        base_url=config.get('base_url')
+        )

@@ -74,13 +74,7 @@ class Group(DeclarativeBase):
 
 
 class User(DeclarativeBase):
-    """
-    User definition.
 
-    This is the user definition used by :mod:`repoze.who`, which requires at
-    least the ``user_name`` column.
-
-    """
     __tablename__ = 'tg_user'
 
     user_id = Column(Integer, autoincrement=True, primary_key=True)
@@ -131,7 +125,6 @@ class User(DeclarativeBase):
 
         password = salt + hash
 
-
         return password
 
     def _set_password(self, password):
@@ -146,17 +139,6 @@ class User(DeclarativeBase):
                                                         _set_password))
 
     def validate_password(self, password):
-        """
-        Check the password against existing credentials.
-
-        :param password: the password that was provided by the user to
-            try and authenticate. This is the clear text version that we will
-            need to match against the hashed one in the database.
-        :type password: unicode object.
-        :return: Whether the password is valid.
-        :rtype: bool
-
-        """
         hash = sha256()
         hash.update((password + self.password[:64]).encode('utf-8'))
         return self.password[64:] == hash.hexdigest()

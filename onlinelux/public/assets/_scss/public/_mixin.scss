@@ -1,0 +1,40 @@
+@mixin BUTTON($class-name , $color-bg , $justify-content) {
+	&.#{$class-name} {
+		@include flexbox;
+      @include justify-content($justify-content);
+		@include align-items(center);
+		background-color: $color-bg;
+      color: #fff;
+      padding: 1.5rem;
+		i{
+			font-size: 2rem;
+		}
+		&:hover{
+			background-color: darken($color-bg, 5%);
+		}
+	}
+}
+
+@mixin transitionAll ($delay) {
+   -webkit-transition: all $delay+s ease-in-out;
+   -moz-transition: all $delay+s ease-in-out;
+   -o-transition: all $delay+s ease-in-out;
+   transition: all $delay+s ease-in-out;
+}
+
+@mixin mediaQuery($media) {
+
+  @if $media == xxs {
+    @media only screen and (max-width: $bp-xxs) { @content; }
+  }
+  @if $media == xs {
+    @media only screen and (max-width: $bp-xs) { @content; }
+  }
+  @else if $media == sm {
+    @media only screen and (max-width: $bp-sm) { @content; }
+  }
+  @else if $media == md {
+    @media only screen and (min-width: $bp-md) { @content; }
+  }
+
+}
