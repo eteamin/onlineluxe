@@ -7,16 +7,16 @@
 
 <section class="page-top">
     <div class="container">
-        <div class="page-breadcrumb">
-            <ol class="breadcrumb">
-                <li><a href="#">فروشگاه</a></li>
-                <li><a href="#">مد و لباس</a></li>
-                <li><a href="#">زنانه</a></li>
-                <li><a href="#">پوشاک</a></li>
-                <li><a href="#">شلوار</a></li>
-                <li class="active"><a href="#">شلوار برند برند lon</a></li>
-            </ol>
-        </div>
+##         <div class="page-breadcrumb">
+##             <ol class="breadcrumb">
+##                 <li><a href="#">فروشگاه</a></li>
+##                 <li><a href="#">مد و لباس</a></li>
+##                 <li><a href="#">زنانه</a></li>
+##                 <li><a href="#">پوشاک</a></li>
+##                 <li><a href="#">شلوار</a></li>
+##                 <li class="active"><a href="#">شلوار برند برند lon</a></li>
+##             </ol>
+##         </div>
     </div>
 </section>
 <!-- page-top -->
@@ -70,7 +70,7 @@
                     <div class="product-info-text_content">
 
                         <div class="product-info--title">
-                            <h3><a href="#">ست سوئیشرت و شلوار </a><span class="off-label">۱۴٪ تخفیف</span></h3>
+                            <h3><a href="#">${product.name}</a><span class="off-label">${''}٪ تخفیف</span></h3>
                             <div class="product-info--more-options">
                                 <div class="rating">
                                     <div class="stars" data-score="4"></div>
@@ -85,15 +85,14 @@
                             <div class="box-row">
                                 <div class="box product-price">
                                     <div class="price-2">قیمت : <span>۱۴۰,۰۰۰ تومان</span></div>
-                                    <div class="price-1">قیمت با تخفیف : <span>۱۲۰,۰۰۰ تومان</span></div>
+                                    <div class="price-1">قیمت با تخفیف : <span>${product.price} تومان</span></div>
                                 </div>
                                 <div class="box product-property">
                                     <h5 class="box-row-title">ویژگی های محصول : </h5>
                                     <ul>
-                                        <li><i class="icon icon-done_all"></i> برند : <span>lon</span></li>
-                                        <li><i class="icon icon-done_all"></i> جنس : <span> 70% پنبه ، 27% پلی استر و 3% الاستین</span></li>
-                                        <li><i class="icon icon-done_all"></i> مدل بسته شدن : <span> دکمه و زیپ</span></li>
-                                        <li><i class="icon icon-done_all"></i> سایز : <span> 26 ، 27 ، 28 ، 29 ، 30 ، 31 ، 32 ، 33</span></li>
+                                        <li><i class="icon icon-done_all"></i> جنس : <span> ${''}</span></li>
+                                        <li><i class="icon icon-done_all"></i> کیفیت : <span> ${product.quality}</span></li>
+                                        <li><i class="icon icon-done_all"></i> سایز : <span> ${product.size}</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -130,7 +129,7 @@
                             <div class="box-row">
                                 <div class="box product-guide">
                                     <ol class="product-guide-list">
-                                        <li><img src="${base_url}/assets/images/step2.svg" alt=""> برگشت محصول تا ۲روز</li>
+                                        <li><img src="${base_url}/assets/images/step2.svg" alt=""> ضمانت مرغوبیت کالا</li>
                                         <li><img src="${base_url}/assets/images/step3.svg" alt=""> ضمانت برگشت پول</li>
                                         <li><img src="${base_url}/assets/images/step4.svg" alt=""> پشتیبانی ۲۴ ساعته</li>
                                     </ol>
@@ -167,11 +166,8 @@
             </nav>
 
             <div class="product-desc" data-scroll-index="0">
-                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای
-                    کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد.</p>
-                <p>تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد
-                    نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد. لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه
-                    و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.</p>
+                <p>${product.description[:150]}</p>
+                <p>${product.description[150:]}</p>
             </div>
 
             <div class="product_details" data-scroll-index="1">
