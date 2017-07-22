@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from sqlalchemy import Unicode, Integer, Column, DateTime, ForeignKey, Table, Enum, Boolean
+from sqlalchemy.orm import relationship, backref
 
 from onlinelux.model import DeclarativeBase
 
@@ -10,6 +11,7 @@ class Category(DeclarativeBase):
 
     id = Column(Integer, primary_key=True)
     title = Column(Unicode(50), unique=True, nullable=False)
+    subcategory = relationship('SubCategory', backref=backref('category'), cascade="all, delete-orphan")
 
 
 class SubCategory(DeclarativeBase):
@@ -19,6 +21,7 @@ class SubCategory(DeclarativeBase):
     title = Column(Unicode(50), unique=True, nullable=False)
 
     cat_id = Column(Integer, ForeignKey('category.id'), index=True)
+    products = relationship('Product', backref=backref('subcategory'), cascade="all, delete-orphan")
 
 
 class Comment(DeclarativeBase):

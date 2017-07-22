@@ -380,8 +380,6 @@
                     </div>
                 </aside>
                 <!-- product_slider -->
-
-
             </div>
             <!-- sidebar -->
         </div>

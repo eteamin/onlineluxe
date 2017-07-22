@@ -6,15 +6,14 @@ from tg import request, redirect, tmpl_context
 from tg.i18n import ugettext as _, lazy_ugettext as l_
 from tg.exceptions import HTTPFound
 from tg import predicates
-from onlinelux import model
-from onlinelux.controllers.secure import SecureController
-from onlinelux.model import DBSession, Article, Product, Picture
 from tgext.admin.tgadminconfig import BootstrapTGAdminConfig as TGAdminConfig
 from tgext.admin.controller import AdminController
+from sqlalchemy.orm import joinedload
 
-
+from onlinelux import model
+from onlinelux.controllers.secure import SecureController
+from onlinelux.model import DBSession, Article, Product, Picture, User, Category, SubCategory
 from onlinelux.lib.base import BaseController
-from onlinelux.model import User
 from onlinelux.controllers.error import ErrorController
 from onlinelux.controllers.admin import Area51Controller
 
@@ -46,6 +45,13 @@ class RootController(BaseController):
             abort(404)
 
         return dict(product=product)
+
+    @expose('onlinelux.templates.subcategory')
+    def s(self, id, title, **kwargs):
+        # TODO: Pagination
+        categories = DBSession.query(Category).options(joinedload('subcategory')).all()
+        products = DBSession.query(Product).filter(Product.subcat_id == id).all()
+        return dict(categories=categories, products=products)
 
     @expose()
     def post_login(self, came_from=lurl('/')):
