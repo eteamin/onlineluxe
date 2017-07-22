@@ -217,18 +217,33 @@
             <!-- product_details -->
 
             <div class="product_comment" data-scroll-index="2">
-
+            % for c in product.comments:
                 <!-- comment -->
-
+                <div class="comment">
+                        <div class="comment--info">
+                            <div class="info_username">
+                                ${c.tg_user.user_name} <span class="username--date">(${JalaliDatetime(c.created).strftime('%A %d %B %Y %H:%M')})</span>
+                            </div>
+                            <a href="#" class="info_like">
+                                ۳+ <i class="icon-like"></i>
+                            </a>
+                            <!-- info_like -->
+                        </div>
+                        <div class="comment--text">
+${c.text}
+                        </div>
+                    </div>
+            % endfor
                 <!-- comment_form -->
                 <div class="comment_form">
                     <h4>نظر شما چیست ؟</h4>
-                    <form method="post" action="${base_url}/upload_comment">
+                    <form method="post" action="${base_url}/comment">
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12 pull-right">
                                 <textarea name="text" cols="10" rows="8" placeholder="متن نظر..."></textarea>
                             </div>
                             <input class="hidden" name="product_id" value="${product.id}">
+                            <input class="hidden" name="product_title" value="${product.name}">
                             <div class="col-md-2 col-sm-2 col-xs-4">
                                 <input type="submit" value="ارسال نظر">
                             </div>

@@ -10,28 +10,14 @@
     <div class="container">
         <div class="page-banner">
             <div class="row">
-                <div class="page-banner_item col-md-3 col-sm-12 col-xs-12">
-                    <a href="product.html" class="page-banner_item__content">
-                        <img class="img-responsive" src="upload/banners/lg2.jpg" alt="">
-                    </a>
-                </div>
-                <div class="page-banner_item col-md-3 col-sm-12 col-xs-12">
-                    <a href="product.html" class="page-banner_item__content">
-                        <img class="img-responsive" src="upload/banners/lg4.jpg" alt="">
-                    </a>
-                </div>
-                <div class="page-banner_item col-md-3 col-sm-12 col-xs-12">
-                    <a href="product.html" class="page-banner_item__content">
-                        <img class="img-responsive" src="upload/banners/lg5.jpg" alt="">
-                    </a>
-                </div>
-                <div class="page-banner_item col-md-3 col-sm-12 col-xs-12">
-                    <a href="product.html" class="page-banner_item__content">
-                        <img class="img-responsive" src="upload/banners/lg2.jpg" alt="">
-                    </a>
-                </div>
+                % for b in bottom_banners:
+                    <div class="page-banner_item col-md-3 col-sm-12 col-xs-12">
+                        <a href="${b.href}" class="page-banner_item__content">
+                            <img class="img-responsive" src="${base_url}/storage/${b.image}" alt="">
+                        </a>
+                    </div>
+                % endfor
             </div>
-
         </div>
     </div>
 </section>
@@ -97,7 +83,7 @@
             <div class="row">
                 %for p in products:
                     <div class="products-item col-md-3 col-sm-12 col-xs-12">
-                        <a href="product.html" title="${p.name} " class="products-item-content">
+                        <a href="${base_url}/p/${p.id}/${p.name}" title="${p.name} " class="products-item-content">
                             <div class="products-item--photo">
                                 <img class="img-responsive" src="${base_url}/storage/${split_by_comma(p.images)[0]}" alt="">
                             </div>

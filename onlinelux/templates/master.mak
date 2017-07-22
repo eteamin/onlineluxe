@@ -82,22 +82,21 @@
 
     					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     						<ul class="nav navbar-nav pull-right">
-    							<li class="active"><a href="#">زنانه</a>
+                                % for c in categories:
+    							<li class="active"><a href="#">${c.title}</a>
     								<div class="navbar-megamenu">
     									<div class="container">
     										<ul>
-    											<li><a href="">بهداشت و نظافت</a></li>
-    											<li><a href="">کتاب کودک</a></li>
+                                                %for s in c.subcategory:
+    											    <li><a href="">${s.title}</a></li>
+                                                %endfor
     										</ul>
     									</div>
     								</div>
     							</li>
-    							<li><a href="">مردانه</a></li>
-    							<li><a href="">بچه گانه</a></li>
-    							<li><a href=""><span class="label-update-menu">جدید</span> نوزاد</a></li>
-    							<li><a href="">لوازم خانه</a></li>
-    							<li><a href="">هدیه</a></li>
-    							<li><a href="">لوازم الکترونیک</a></li>
+                                % endfor
+    							<li><a href=""><span class="label-update-menu">جدید</span> کالاهای ویژه</a></li>
+
     						</ul>
     					</div>
     				</div>

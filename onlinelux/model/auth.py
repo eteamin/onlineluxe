@@ -13,9 +13,10 @@ from datetime import datetime
 from hashlib import sha256
 __all__ = ['User', 'Group', 'Permission']
 
+from tg import request, abort
 from sqlalchemy import Table, ForeignKey, Column
 from sqlalchemy.types import Unicode, Integer, DateTime
-from sqlalchemy.orm import relation, synonym
+from sqlalchemy.orm import relation, synonym, relationship, backref
 
 from onlinelux.model import DeclarativeBase, metadata, DBSession
 
@@ -83,6 +84,7 @@ class User(DeclarativeBase):
     display_name = Column(Unicode(255))
     _password = Column('password', Unicode(128))
     created = Column(DateTime, default=datetime.now)
+    comments = relationship('Comment', backref=backref('tg_user'), cascade="all, delete-orphan")
 
     def __repr__(self):
         return '<User: name=%s, email=%s, display=%s>' % (
@@ -142,6 +144,12 @@ class User(DeclarativeBase):
         hash = sha256()
         hash.update((password + self.password[:64]).encode('utf-8'))
         return self.password[64:] == hash.hexdigest()
+
+    @classmethod
+    def current(cls):
+        if 'REMOTE_USER' not in request.environ:
+            abort(401)
+        return DBSession.query(User).filter(User.user_name == request.environ['REMOTE_USER']).one()
 
 
 class Permission(DeclarativeBase):

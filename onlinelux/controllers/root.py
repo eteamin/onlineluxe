@@ -12,7 +12,7 @@ from sqlalchemy.orm import joinedload
 
 from onlinelux import model
 from onlinelux.controllers.secure import SecureController
-from onlinelux.model import DBSession, Article, Product, Picture, User, Category, SubCategory
+from onlinelux.model import DBSession, Article, Product, Picture, User, Comment, SubCategory
 from onlinelux.lib.base import BaseController
 from onlinelux.controllers.error import ErrorController
 from onlinelux.controllers.admin import Area51Controller
@@ -40,7 +40,7 @@ class RootController(BaseController):
 
     @expose('onlinelux.templates.product')
     def p(self, id, title):
-        product = DBSession.query(Product).filter(Product.id == id).one_or_none()
+        product = DBSession.query(Product).options(joinedload('comments.tg_user')).filter(Product.id == id).one_or_none()
         if not product:
             abort(404)
 
@@ -49,9 +49,18 @@ class RootController(BaseController):
     @expose('onlinelux.templates.subcategory')
     def s(self, id, title, **kwargs):
         # TODO: Pagination
-        categories = DBSession.query(Category).options(joinedload('subcategory')).all()
         products = DBSession.query(Product).filter(Product.subcat_id == id).all()
-        return dict(categories=categories, products=products)
+        return dict(products=products)
+
+    @expose()
+    def comment(self, **kwargs):
+        text = kwargs.get('text')
+        product_id = kwargs.get('product_id')
+        product_title = kwargs.get('product_title')
+        c = Comment(text=text, product_id=product_id, user_id=User.current().user_id)
+        DBSession.add(c)
+        DBSession.flush()
+        redirect('/p/{}/{}'.format(product_id, product_title))
 
     @expose()
     def post_login(self, came_from=lurl('/')):

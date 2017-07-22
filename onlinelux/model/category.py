@@ -3,7 +3,7 @@ from datetime import datetime
 from sqlalchemy import Unicode, Integer, Column, DateTime, ForeignKey, Table, Enum, Boolean
 from sqlalchemy.orm import relationship, backref
 
-from onlinelux.model import DeclarativeBase
+from onlinelux.model import DeclarativeBase, User
 
 
 class Category(DeclarativeBase):
@@ -47,6 +47,7 @@ class Product(DeclarativeBase):
     images = Column(Unicode, unique=True, nullable=False)  # comma-sep image_path specified by StorageManager
     price = Column(Integer, nullable=False)
     created = Column(DateTime, default=datetime.now)
+    comments = relationship('Comment', backref=backref('product'), cascade="all, delete-orphan")
 
     subcat_id = Column(Integer, ForeignKey('subcategory.id'), index=True)
 

@@ -4,8 +4,11 @@ import logging
 from markupsafe import Markup
 from datetime import datetime
 
+from sqlalchemy.orm import joinedload
 from tg import session, config
 from khayyam import JalaliDate
+
+from onlinelux.model import DBSession, Picture, Category
 
 log = logging.getLogger(__name__)
 
@@ -30,5 +33,7 @@ def add_global_template_variables():
         today=JalaliDate.today().strftime('%A %d %B %Y'),
         time=datetime.now().strftime('%H:%M:%S'),
         session=session,
-        base_url=config.get('base_url')
+        base_url=config.get('base_url'),
+        bottom_banners=DBSession.query(Picture).filter(Picture.genre == 'Bottom-Banners').all(),
+        categories=DBSession.query(Category).options(joinedload('subcategory')).all()
         )
