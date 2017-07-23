@@ -12,15 +12,16 @@
 
             <div class="banners-1 col-md-3 col-xs-12 pull-right">
                 <div class="row">
+                    % for p in [p for p in pictures if p.genre == 'Banner']:
                     <div class="banner_photo col-xs-12">
-                        <a href=""><img class="img-responsive" src="upload/banners/b1.jpg" alt=""></a>
+                        <a href="${p.href}"><img class="img-responsive" src="${base_url}/storage/${p.image}" alt=""></a>
                     </div>
+                    % endfor
+                    % for p in [p for p in pictures if p.genre == 'Special']:
                     <div class="banner_photo col-xs-12">
-                        <a href=""><img class="img-responsive" src="upload/banners/b2.jpg" alt=""></a>
+                        <a href=""><img class="img-responsive" src="${base_url}/storage/${p.image}" alt=""></a>
                     </div>
-                    <div class="banner_photo col-xs-12">
-                        <a href=""><img class="img-responsive" src="upload/banners/b3.jpg" alt=""></a>
-                    </div>
+                    % endfor
                 </div>
             </div>
             <!-- banners-1 -->
@@ -30,7 +31,7 @@
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 
                         <div class="carousel-inner" role="listbox">
-                            % for c in carousels:
+                            % for c in [p for p in pictures if p.genre == 'Carousel']:
                                 <div class="item ${'active' if carousels.index(c) == 0 else ''}">
                                     <a href="${c.href}"><img src="${base_url}/storage/${c.image}" alt=""></a>
                                 </div>
@@ -50,21 +51,11 @@
 
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
+                            %for b in [p for p in pictures if p.genre == 'bottomCarousel']:
                             <li data-target="#carousel-example-generic" data-slide-to="0" class="active">
-                                لوازم خانگی
+                                ${b.title}
                             </li>
-                            <li data-target="#carousel-example-generic" data-slide-to="1">
-                                هدفون بیتس
-                            </li>
-                            <li data-target="#carousel-example-generic" data-slide-to="2">
-                                لباس کودک
-                            </li>
-                            <li data-target="#carousel-example-generic" data-slide-to="3">
-                                موبایل و تبلت
-                            </li>
-                            <li data-target="#carousel-example-generic" data-slide-to="4">
-                                محصولات آرایشی
-                            </li>
+                            %endfor
                         </ol>
 
                     </div>
@@ -72,14 +63,16 @@
                 <!-- page__slider -->
 
                 <div class="page__banners">
-                    <div class="b1 col-md-8 col-xs-12 pull-right">
-                        <div class="banner_photo">
-                            <a href=""><img class="img-responsive" src="upload/banners/b4.jpg" alt=""></a>
+                    % for p in [p for p in pictures if p.genre == 'Special']:
+                        <div class="b1 col-md-8 col-xs-12 pull-right">
+                            <div class="banner_photo">
+                                <a href="${p.href}"><img class="img-responsive" src="${base_url}/storage/${p.image}" alt=""></a>
+                            </div>
                         </div>
-                    </div>
+                    %endfor
                     <div class="b1 col-md-4 col-xs-12 pull-left">
                         <div class="banner_photo">
-                            <a href=""><img class="img-responsive" src="upload/banners/b5.jpg" alt=""></a>
+                            <a href=""><img class="img-responsive" src="${base_url}/upload/telegram.png" alt=""></a>
                         </div>
                     </div>
 
@@ -132,27 +125,11 @@
                         </div>
 
                         <div class="carousel-inner" role="listbox">
-                            <div class="item">
-                                <a href=""><img data-name="اتوبخار پاناسونیک" src="upload/slideshow/s1.jpg" alt=""></a>
-                            </div>
-                            <div class="item">
-                                <a href=""><img data-name="HTC One A9 گوشی موبایل" src="upload/slideshow/s2.jpg" alt=""></a>
-                            </div>
-                            <div class="item">
-                                <a href=""><img data-name="فلش مموری ۸ گیگ" src="upload/slideshow/s1.jpg" alt=""></a>
-                            </div>
-                            <div class="item">
-                                <a href=""><img data-name="گوشی سامسونگ" src="upload/slideshow/s2.jpg" alt=""></a>
-                            </div>
-                            <div class="item">
-                                <a href=""><img data-name="گوشی ال جی ج۲" src="upload/slideshow/s1.jpg" alt=""></a>
-                            </div>
-                            <div class="item">
-                                <a href=""><img data-name="ساعت هوشمند موتورلا" src="upload/slideshow/s2.jpg" alt=""></a>
-                            </div>
-                            <div class="item">
-                                <a href=""><img data-name="دستبند سلامتی" src="upload/slideshow/s1.jpg" alt=""></a>
-                            </div>
+                            % for p in [p for p in pictures if p.genre == 'bottomCarousel']:
+                                <div class="item">
+                                    <a href="${p.href}"><img data-name="${p.title}" src="${base_url}/storage/${p.image}" alt=""></a>
+                                </div>
+                            % endfor
                         </div>
                     </div>
                 </div>
@@ -164,27 +141,17 @@
                     <img class="img-responsive" src="assets/images/bg-header-video.png" alt="">
                     <h4><i class="fa fa-play"></i> آخرین بررسی های ویدیویی</h4>
                 </div>
-
-                <div class="video--item">
-                    <a href="">
-                        <img class="img-responsive" src="upload/video1.jpg" alt="">
-                        <div class="video--item_title">
-                            <i class="fa fa-camera"></i>
-                            <span class="title--text">ماهیتابه فرنث</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="video--item">
-                    <a href="">
-                        <img class="img-responsive" src="upload/video2.jpg" alt="">
-                        <div class="video--item_title">
-                            <i class="fa fa-camera"></i>
-                            <span class="title--text">ست قابلمه</span>
-                        </div>
-                    </a>
-                </div>
-
+                % for p in [p for p in pictures if p.genre == 'video']:
+                    <div class="video--item">
+                        <a href="${p.href}">
+                            <img class="img-responsive" src="${base_url}/storage/${p.image}" alt="">
+                            <div class="video--item_title">
+                                <i class="fa fa-camera"></i>
+                                <span class="title--text">${p.title}</span>
+                            </div>
+                        </a>
+                    </div>
+                % endfor
             </div>
             <!-- page_section-2__video -->
         </div>
@@ -288,61 +255,21 @@
 
     </div>
 </section>
-
-<section class="section page_section__banners">
+<section class="page-top">
     <div class="container">
-        <div class="row">
-            <div class="banner-right-side col-md-3 col-sm-12 col-xs-12 pull-right">
-                <div class="banner-right-side--content photo-1">
-                    <a href=""><img class="img-responsive" src="upload/banners/lg1.jpg" alt=""></a>
-                </div>
+        <div class="page-banner">
+            <div class="row">
+                % for b in [p for p in pictures if p.genre == 'bottomBanner']:
+                    <div class="page-banner_item col-md-3 col-sm-12 col-xs-12">
+                        <a href="${b.href}" class="page-banner_item__content">
+                            <img class="img-responsive" src="${base_url}/storage/${b.image}" alt="">
+                        </a>
+                    </div>
+                % endfor
             </div>
-            <!-- banner-right-side -->
-            <div class="banner-right-side col-md-6 col-sm-12 col-xs-12 pull-right">
-                <div class="row">
-                    <div class="col-md-6 col-sm-12 col-sm-12 col-xs-12">
-                        <div class="banner-right-side--content photo-2">
-                            <a href=""><img class="img-responsive" src="upload/banners/lg4.jpg" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12 col-sm-12 col-xs-12">
-                        <div class="banner-right-side--content photo-2">
-                            <a href=""><img class="img-responsive" src="upload/banners/lg5.jpg" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-sm-12 col-xs-12">
-                        <div class="banner-right-side--content photo-3 margin-top">
-                            <a href=""><img class="img-responsive" src="upload/banners/lg3.jpg" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <!-- banner-right-side -->
-            <div class="banner-right-side col-md-3 col-sm-12 col-xs-12 pull-left">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="banner-right-side--content photo-2">
-                            <a href=""><img class="img-responsive" src="upload/banners/lg2.jpg" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="banner-right-side--content photo-2 margin-top">
-                            <a href=""><img class="img-responsive" src="upload/banners/lg2.jpg" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <!-- banner-right-side -->
         </div>
-
-
     </div>
 </section>
-<!-- page_section__banners -->
 
 <section class="section page_section-3 bg-white">
     <div class="container">

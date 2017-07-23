@@ -34,9 +34,8 @@ class RootController(BaseController):
     def index(self):
         latest = DBSession.query(Product).order_by(Product.id.desc()).limit(16).all()
         articles = DBSession.query(Article).order_by(Article.id.desc()).limit(2).all()
-        carousels = DBSession.query(Picture).filter(Picture.genre == 'Carousel').all()
         top = []
-        return dict(latest=latest, articles=articles, carousels=carousels, top=top)
+        return dict(latest=latest, articles=articles, top=top)
 
     @expose('onlinelux.templates.product')
     def p(self, id, title):

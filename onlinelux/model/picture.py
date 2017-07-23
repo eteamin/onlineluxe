@@ -10,13 +10,16 @@ class Picture(DeclarativeBase):
     genre = Column(
         Enum(
             'Carousel',
+            'bottomCarousel'
             'Banner',
             'Top',
             'Special',
-            'Bottom-Banners',
+            'bottomBanners',
+            'video',
             name='picture_genres'
         ),
         nullable=False
     )
     image = Column(Unicode(25), nullable=False, unique=True)
     href = Column(Unicode, nullable=False)
+    title = Column(Unicode, nullable=True)

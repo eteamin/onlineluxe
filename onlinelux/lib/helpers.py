@@ -31,9 +31,8 @@ except SyntaxError:
 def add_global_template_variables():
     return dict(
         today=JalaliDate.today().strftime('%A %d %B %Y'),
-        time=datetime.now().strftime('%H:%M:%S'),
         session=session,
         base_url=config.get('base_url'),
-        bottom_banners=DBSession.query(Picture).filter(Picture.genre == 'Bottom-Banners').all(),
+        pictures=DBSession.query(Picture).all(),
         categories=DBSession.query(Category).options(joinedload('subcategory')).all()
         )
