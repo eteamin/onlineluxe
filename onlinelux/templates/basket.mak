@@ -53,9 +53,9 @@
                             </td>
                             <td>
                                 <div class="add-num-control" data-target="#updatePrice">
-                                    <button class="increment">+</button>
+                                    <button onclick="window.location = '${base_url}/change_count/${p.id}/up'" class="increment">+</button>
                                     <input type="text" value="${basket.items.get(str(p.id))}">
-                                    <button class="decrement">-</button>
+                                    <button onclick="window.location = '${base_url}/change_count/${p.id}/down'" class="decrement">-</button>
                                     <input type="hidden" class="updatePriceHidden" value="50000">
                                 </div>
                                 <div class="update-price">
@@ -74,7 +74,7 @@
             </div>
             <div class="product-total">
                 <span class="pricelabel">مجموع مبلغ قابل پرداخت : </span>
-                <span class="price">۱۶۲,۰۰۰ تومان</span>
+                <span class="price">${sum([p.price * basket.items.get(str(p.id)) for p in basket.product])} تومان</span>
             </div>
              <div class="button_sec">
                 <div class="button">

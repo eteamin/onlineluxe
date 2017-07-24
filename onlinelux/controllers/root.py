@@ -75,19 +75,45 @@ class RootController(BaseController):
                 pass
             elif product not in basket.product:
                 basket.product.append(product)
-                basket.items[product.id] = 1
+                tmp = basket.items
+                tmp[product.id] = 1
+                basket.items = tmp
                 DBSession.flush()
             redirect('/basket')
         if not basket or basket.status != 'Selection':
             basket = Purchase(
                 user_id=user.user_id,
-                items=''
+                items={}
             )
             basket.product.append(product)
+            tmp = basket.items
+            tmp[product.id] = 1
+            basket.items = tmp
             DBSession.add(basket)
-            basket.items = {product.id: 1}
             DBSession.flush()
             redirect('/basket')
+
+    @expose()
+    def change_count(self, product_id, value):
+        user = User.current()
+        basket = DBSession. \
+            query(Purchase). \
+            filter(Purchase.user_id == user.user_id). \
+            order_by(Purchase.id.desc()). \
+            first()
+        product = DBSession.query(Product).filter(Product.id == product_id).one_or_none()
+        tmp = basket.items
+        if value == 'up':
+            if int(basket.items.get(str(product.id))) >= int(product.quantity):
+                return
+            tmp[product_id] += 1
+        elif value == 'down':
+            if int(basket.items.get(str(product.id))) == 0:
+                return
+            tmp[product_id] += -1
+        basket.items = tmp
+        DBSession.flush()
+        redirect('/basket')
 
     @expose()
     def comment(self, **kwargs):
