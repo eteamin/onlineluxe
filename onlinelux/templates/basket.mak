@@ -1,6 +1,8 @@
 <%inherit file="local:templates.master"/>
-
-
+<%
+    def split_by_comma(s):
+        return s.split(',') if isinstance(s, str) else None
+%>
 
 <section class="page-top">
     <div class="container">
@@ -40,7 +42,7 @@
                         <tr>
                             <td>
                                 <a href="#">
-                                   <img src="${base_url}/storage/${p.image}">
+                                   <img src="${base_url}/storage/${split_by_comma(p.images)[0]}">
                                    <span class="product-info">
                                                   <span class="product-info_name">${p.name}</span>
                                       <span class="product-info_color">
@@ -52,17 +54,16 @@
                             <td>
                                 <div class="add-num-control" data-target="#updatePrice">
                                     <button class="increment">+</button>
-                                    <input type="text" value="1">
+                                    <input type="text" value="${basket.items.get(str(p.id))}">
                                     <button class="decrement">-</button>
-                                    <input type="hidden" class="updatePriceHidden" value="50000"></input>
+                                    <input type="hidden" class="updatePriceHidden" value="50000">
                                 </div>
                                 <div class="update-price">
                                         <!-- <span id="updatePrice"></span><span class="price-Unit">تومان</span> -->
                                 </div>
-
                             </td>
                             <td>${p.price} تومان</td>
-                            <td>۵۰,۰۰۰ تومان</td>
+                            <td>${p.price * basket.items.get(str(p.id))} تومان</td>
                             <td>
                                 <button class="icon-cancel-circle"></button>
                             </td>
@@ -77,7 +78,7 @@
             </div>
              <div class="button_sec">
                 <div class="button">
-                   <a class="btn">ادامه خرید</a>
+                   <a class="btn stepBtn" style="background: #e8739e; margin-left: 1px;">ادامه خرید</a>
                 </div>
                 <div class="button">
                    <a class="btn stepBtn">تایید و پرداخت نهایی</a>

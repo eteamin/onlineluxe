@@ -136,7 +136,7 @@
                                 </div>
                                 <!-- product-guide -->
                                 <div class="box product-buy-btn">
-                                    <a class="btn btn-add-to-cart" href="#">
+                                    <a class="btn btn-add-to-cart" href="" onclick="window.location = '${base_url}/add_to_basket/${product.id}'">
                                       افزودن به سبد خرید <i class="icon icon-cart3"></i>
                                    </a>
                                 </div>

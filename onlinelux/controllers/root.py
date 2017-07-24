@@ -12,7 +12,7 @@ from sqlalchemy.orm import joinedload
 
 from onlinelux import model
 from onlinelux.controllers.secure import SecureController
-from onlinelux.model import DBSession, Article, Product, Purchase, User, Comment, SubCategory
+from onlinelux.model import DBSession, Article, Product, Purchase, User, Comment
 from onlinelux.lib.base import BaseController
 from onlinelux.controllers.error import ErrorController
 from onlinelux.controllers.admin import Area51Controller
@@ -63,16 +63,30 @@ class RootController(BaseController):
 
     @expose()
     def add_to_basket(self, p_id):
+        user = User.current()
         basket = DBSession. \
             query(Purchase). \
-            filter(Purchase.user_id == User.current().user_id). \
+            filter(Purchase.user_id == user.user_id). \
             order_by(Purchase.id.desc()). \
             first()
+        product = DBSession.query(Product).filter(Product.id == p_id).one_or_none()
         if basket and basket.status == 'Selection':
-            product = DBSession.query(Product).filter(Product.id == p_id).one_or_none()
-            if product and product.quantity > 0 and product not in basket.product:
+            if product in basket.product:
+                pass
+            elif product not in basket.product:
                 basket.product.append(product)
+                basket.items[product.id] = 1
                 DBSession.flush()
+            redirect('/basket')
+        if not basket or basket.status != 'Selection':
+            basket = Purchase(
+                user_id=user.user_id,
+                items=''
+            )
+            basket.product.append(product)
+            DBSession.add(basket)
+            basket.items = {product.id: 1}
+            DBSession.flush()
             redirect('/basket')
 
     @expose()

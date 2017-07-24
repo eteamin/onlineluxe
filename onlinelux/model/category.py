@@ -78,7 +78,7 @@ class Purchase(DeclarativeBase):
         secondary=product_purchase_table,
         back_populates="purchase")
 
-    _items = Column('items', Unicode)
+    _items = Column('items', Unicode, default='')
 
     def _set_items(self, data):
         self._items = json.dumps(data)
