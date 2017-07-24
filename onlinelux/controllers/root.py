@@ -12,7 +12,7 @@ from sqlalchemy.orm import joinedload
 
 from onlinelux import model
 from onlinelux.controllers.secure import SecureController
-from onlinelux.model import DBSession, Article, Product, Picture, User, Comment, SubCategory
+from onlinelux.model import DBSession, Article, Product, Purchase, User, Comment, SubCategory
 from onlinelux.lib.base import BaseController
 from onlinelux.controllers.error import ErrorController
 from onlinelux.controllers.admin import Area51Controller
@@ -50,6 +50,30 @@ class RootController(BaseController):
         # TODO: Pagination
         products = DBSession.query(Product).filter(Product.subcat_id == id).all()
         return dict(products=products)
+
+    @expose('onlinelux.templates.basket')
+    def basket(self):
+        basket = DBSession.\
+            query(Purchase).\
+            filter(Purchase.user_id == User.current().user_id).\
+            order_by(Purchase.id.desc()).\
+            first()
+        basket = basket if basket and basket.status == 'Selection' else None
+        return dict(basket=basket)
+
+    @expose()
+    def add_to_basket(self, p_id):
+        basket = DBSession. \
+            query(Purchase). \
+            filter(Purchase.user_id == User.current().user_id). \
+            order_by(Purchase.id.desc()). \
+            first()
+        if basket and basket.status == 'Selection':
+            product = DBSession.query(Product).filter(Product.id == p_id).one_or_none()
+            if product and product.quantity > 0 and product not in basket.product:
+                basket.product.append(product)
+                DBSession.flush()
+            redirect('/basket')
 
     @expose()
     def comment(self, **kwargs):

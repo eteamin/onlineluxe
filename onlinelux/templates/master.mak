@@ -43,7 +43,7 @@
 
     					<div class="navbar-main_product-elm col-md-2 col-sm-12 col-xs-12 col-md-offset-1">
     						<div class="shopping-cart">
-    							<i class="icon icon-cart3"></i>
+    							<a href="${tg.url('/basket')}"><i class="icon icon-cart3"></i></a>
     							<span class="add-to-cart__count">0</span>
     						</div>
     						<a href="#" class="compare">

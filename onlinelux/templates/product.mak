@@ -46,7 +46,7 @@
                                 <div class="modal-content">
                                     <div class="modal-body">
                                         <div class="pikachoose">
-                                            <ul id="pikame">asd
+                                            <ul id="pikame">
                                                 %for i in split_by_comma(product.images):
                                                     %if i:
                                                         <li>

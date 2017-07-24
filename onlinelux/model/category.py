@@ -1,7 +1,8 @@
 from datetime import datetime
+import json
 
 from sqlalchemy import Unicode, Integer, Column, DateTime, ForeignKey, Table, Enum, Boolean
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy.orm import relationship, backref, synonym
 
 from onlinelux.model import DeclarativeBase, User
 
@@ -35,6 +36,13 @@ class Comment(DeclarativeBase):
     user_id = Column(Integer, ForeignKey('tg_user.user_id'), index=True)
 
 
+product_purchase_table = Table(
+    'product_purchase', DeclarativeBase.metadata,
+    Column('purchase_id', Integer, ForeignKey('purchase.id', onupdate="CASCADE", ondelete="CASCADE"), primary_key=True),
+    Column('product_id', Integer, ForeignKey('product.id', onupdate="CASCADE", ondelete="CASCADE"), primary_key=True)
+)
+
+
 class Product(DeclarativeBase):
     __tablename__ = 'product'
 
@@ -51,6 +59,11 @@ class Product(DeclarativeBase):
 
     subcat_id = Column(Integer, ForeignKey('subcategory.id'), index=True)
 
+    purchase = relationship(
+        "Purchase",
+        secondary=product_purchase_table,
+        back_populates="product")
+
 
 class Purchase(DeclarativeBase):
     __tablename__ = 'purchase'
@@ -58,13 +71,19 @@ class Purchase(DeclarativeBase):
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('tg_user.user_id'), index=True)
     created = Column(DateTime, default=datetime.now)
-    status = Column(Enum('Preparing', 'Sent', 'Delivered', name='order_status'), default='Preparing')
+    status = Column(Enum('Selection', 'Preparing', 'Sent', 'Delivered', name='order_status'), default='Selection')
 
+    product = relationship(
+        "Product",
+        secondary=product_purchase_table,
+        back_populates="purchase")
 
-product_purchase_table = Table(
-    'product_purchase', DeclarativeBase.metadata,
-    Column('purchase_id', Integer, ForeignKey('purchase.id', onupdate="CASCADE", ondelete="CASCADE"), primary_key=True),
-    Column('product_id', Integer, ForeignKey('product.id', onupdate="CASCADE", ondelete="CASCADE"), primary_key=True)
-)
+    _items = Column('items', Unicode)
 
+    def _set_items(self, data):
+        self._items = json.dumps(data)
 
+    def _get_items(self):
+        return json.loads(self._items)
+
+    items = synonym('_items', descriptor=property(_get_items, _set_items))

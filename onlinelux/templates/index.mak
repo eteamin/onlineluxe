@@ -57,7 +57,6 @@
                             </li>
                             %endfor
                         </ol>
-
                     </div>
                 </div>
                 <!-- page__slider -->
