@@ -71,7 +71,7 @@ class Purchase(DeclarativeBase):
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('tg_user.user_id'), index=True)
     created = Column(DateTime, default=datetime.now)
-    status = Column(Enum('Selection', 'Preparing', 'Sent', 'Delivered', name='order_status'), default='Selection')
+    status = Column(Enum('Selection', 'Payment', 'Preparing', 'Sent', 'Delivered', name='order_status'), default='Selection')
 
     product = relationship(
         "Product",

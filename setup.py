@@ -47,7 +47,8 @@ install_requires = [
     "WebHelpers2",
     "psycopg2",
     "khayyam",
-    "gunicorn"
+    "gunicorn",
+    "suds-jurko"
 ]
 
 if py_version != (3, 2):

@@ -9,6 +9,7 @@ from tg import predicates
 from tgext.admin.tgadminconfig import BootstrapTGAdminConfig as TGAdminConfig
 from tgext.admin.controller import AdminController
 from sqlalchemy.orm import joinedload
+from sqlalchemy.exc import IntegrityError
 
 from onlinelux import model
 from onlinelux.controllers.secure import SecureController
@@ -149,17 +150,29 @@ class RootController(BaseController):
             redirect('/basket')
         return dict(user=user, basket_id=basket_id)
 
-    @expose()
-    def order_basket(self, **kwargs):
+    @expose('json')
+    def order_basket(self, **k):
         user = User.current()
         basket = DBSession. \
             query(Purchase). \
             filter(Purchase.user_id == user.user_id). \
-            filter(Purchase.id == kwargs.get('basket_id')).\
+            filter(Purchase.id == k.get('basket_id')).\
             order_by(Purchase.id.desc()). \
             first()
         if not basket or basket.status != 'Selection':
             redirect('/')
+
+        dis_name, address, code, phone = k.get('name'), k.get('address'), k.get('code'), k.get('phone')
+        user.display_name = dis_name
+        user.postal_address = address
+        user.postal_code = code
+        user.phone_number = phone
+        try:
+            DBSession.flush()
+        except IntegrityError:
+            return dict(ok=False)
+        
+
 
     @expose()
     def post_logout(self, came_from=lurl('/')):
