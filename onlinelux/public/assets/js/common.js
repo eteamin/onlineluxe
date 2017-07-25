@@ -149,16 +149,15 @@ define([
             var formData = new FormData();
 	        formData.append('username', username);
 	        formData.append('password', password);
-	        formData.append('phoneNumber', phoneNumber);
             $.ajax({
-               url : base_url + '/register_handler',
+               url : base_url + '/register',
                type : 'POST',
                data : formData,
                processData: false,
                contentType: false,
                success : function(resp) {
                     if (resp.ok) {
-                        window.location = base_url
+                        window.location = base_url + '/login_handler?login=' + username + '&password=' + password
                     }
                     else {
                         $('#register-error').css("display", "block");

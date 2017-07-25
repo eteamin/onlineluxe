@@ -145,17 +145,11 @@ class RootController(BaseController):
         user.postal_address = address
         user.postal_code = code
         user.phone_number = phone
-        try:
-            DBSession.flush()
-        except IntegrityError:
-            return dict(ok=False)
-
         zp = ZarinpalClient(amount=basket.final_price, basket_uid=basket.uid)
         authority = zp.make()
         payment_url = config.get('payment')
         basket.authority = authority
         basket.status = 'Payment'
-        DBSession.add(basket)
         try:
             DBSession.flush()
             return dict(ok=True, payment_url=payment_url, authority=authority)
@@ -212,3 +206,17 @@ class RootController(BaseController):
     @expose()
     def post_logout(self, came_from=lurl('/')):
         return HTTPFound(location=came_from)
+
+    @expose('json')
+    def register(self, **kwargs):
+        username = kwargs.get('username')
+        password = kwargs.get('password')
+        DBSession.add(User(
+            user_name=username,
+            password=password
+        ))
+        try:
+            DBSession.flush()
+            return dict(ok=True)
+        except IntegrityError:
+            return dict(ok=False)
