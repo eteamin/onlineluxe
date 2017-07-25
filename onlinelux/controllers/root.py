@@ -50,6 +50,11 @@ class RootController(BaseController):
         products = DBSession.query(Product).filter(Product.subcat_id == id).all()
         return dict(products=products)
 
+    @expose('onlinelux.templates.purchases')
+    def purchases(self):
+        purchases = DBSession.query(Purchase).filter(Purchase.user_id == User.current().user_id).all()
+        return dict(purchases=purchases)
+
     @expose('onlinelux.templates.basket')
     def basket(self):
         basket = DBSession.\
