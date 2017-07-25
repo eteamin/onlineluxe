@@ -12,6 +12,7 @@ from onlinelux import model
 from onlinelux.model import DBSession, Article, Product, Purchase, User, Comment
 from onlinelux.lib.base import BaseController
 from onlinelux.lib.zarinpal_client import ZarinpalClient
+from onlinelux.lib.telegram_bot import TelegramNotifier
 from onlinelux.controllers.error import ErrorController
 from onlinelux.controllers.admin import Area51Controller
 
@@ -172,48 +173,44 @@ class RootController(BaseController):
 
         final_price = sum([p.price * basket.items.get(str(p.id)) for p in basket.product])
 
-        zp = ZarinpalClient(amount=final_price)
+        zp = ZarinpalClient(amount=final_price, basket_uid=basket.uid)
         authority = zp.make()
         payment_url = config.get('payment')
-        charge = Charge(name=name, authority=authority, amount=amount)
-        DBSession.add(charge)
+        basket.authority = authority
+        basket.status = 'Payment'
+        DBSession.add(basket)
         try:
             DBSession.flush()
-            redirect('{}/{}'.format(payment_url, authority))
+            return dict(ok=True, payment_url=payment_url, authority=authority)
         except IntegrityError:
-            pass
+            return dict(ok=False)
 
-        @expose()
-        def charge_callback(self, **kwargs):
-            authority = kwargs.get('Authority')
-            status = kwargs.get('Status')
-            if status == 'NOK':
-                return dict(ok=False)
-            elif status == 'OK':
-                charge = DBSession. \
-                    query(Charge). \
-                    filter(Charge.authority == authority). \
-                    one_or_none()
-                if charge:
-                    try:
-                        zp = ZarinpalClient(charge.amount)
-                        ref_id, status = zp.verify_payment(authority)
-                    except URLError:
-                        abort(409, detail='ZarinPal Temporary Down', passthrough='json')
-                    if ref_id:
-                        charge.ref_id = ref_id
-                        charge.status = 'Done'
-                        b = Robot(charge.name, charge.amount)
-                        b.notify()
-                        try:
-                            DBSession.flush()
-                            return HTTPFound(location=lurl('/'))
-                        except IntegrityError:
-                            return HTTPFound(location=lurl('/'))
-                    else:
-                        return HTTPFound(location=lurl('/'))
+    @expose()
+    def purchase_callback(self, **kwargs):
+        authority = kwargs.get('Authority')
+        status = kwargs.get('Status')
+        user = User.current()
+        if status == 'NOK':
+            redirect('/basket')
+        elif status == 'OK':
+            basket = DBSession. \
+                query(Purchase). \
+                filter(Purchase.authority == authority). \
+                filter(Purchase.user_id == user.user_id). \
+                one_or_none()
+            if basket and basket.status == 'Payment':
+                final_price = sum([p.price * basket.items.get(str(p.id)) for p in basket.product])
+                zp = ZarinpalClient(final_price, basket.uid)
+                ref_id, status = zp.verify_payment(authority)
+                if ref_id:
+                    basket.ref_id = ref_id
+                    basket.status = 'Preparing'
+                    TelegramNotifier(basket, final_price)
+                    DBSession.flush()
                 else:
-                    return HTTPFound(location=lurl('/'))
+                    redirect('/basket')
+            else:
+                redirect('/basket')
 
     @expose()
     def post_logout(self, came_from=lurl('/')):

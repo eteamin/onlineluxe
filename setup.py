@@ -48,7 +48,8 @@ install_requires = [
     "psycopg2",
     "khayyam",
     "gunicorn",
-    "suds-jurko"
+    "suds-jurko",
+    "python-telegram-bot"
 ]
 
 if py_version != (3, 2):
