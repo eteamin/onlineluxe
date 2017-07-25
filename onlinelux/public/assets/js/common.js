@@ -149,6 +149,7 @@ define([
             var formData = new FormData();
 	        formData.append('username', username);
 	        formData.append('password', password);
+	        formData.append('phoneNumber', phoneNumber);
             $.ajax({
                url : base_url + '/register_handler',
                type : 'POST',
@@ -166,5 +167,4 @@ define([
             });
 
         });
-
 });

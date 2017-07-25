@@ -80,18 +80,13 @@ class User(DeclarativeBase):
 
     user_id = Column(Integer, autoincrement=True, primary_key=True)
     user_name = Column(Unicode(16), unique=True, nullable=False)
-    email_address = Column(Unicode(255), unique=True, nullable=False)
+    phone_number = Column(Unicode(11), unique=True, nullable=True)
+    postal_address = Column(Unicode(255), nullable=True)
+    postal_code = Column(Unicode(50), nullable=True)
     display_name = Column(Unicode(255))
     _password = Column('password', Unicode(128))
     created = Column(DateTime, default=datetime.now)
     comments = relationship('Comment', backref=backref('tg_user'), cascade="all, delete-orphan")
-
-    def __repr__(self):
-        return '<User: name=%s, email=%s, display=%s>' % (
-            repr(self.user_name),
-            repr(self.email_address),
-            repr(self.display_name)
-        )
 
     def __unicode__(self):
         return self.display_name or self.user_name
@@ -103,16 +98,6 @@ class User(DeclarativeBase):
         for g in self.groups:
             perms = perms | set(g.permissions)
         return perms
-
-    @classmethod
-    def by_email_address(cls, email):
-        """Return the user object whose email address is ``email``."""
-        return DBSession.query(cls).filter_by(email_address=email).first()
-
-    @classmethod
-    def by_user_name(cls, username):
-        """Return the user object whose user name is ``username``."""
-        return DBSession.query(cls).filter_by(user_name=username).first()
 
     @classmethod
     def _hash_password(cls, password):

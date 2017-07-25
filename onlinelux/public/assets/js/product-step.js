@@ -1,5 +1,5 @@
 requirejs.config({
-   "baseUrl": "assets/js",
+   "baseUrl": window.location.origin + '/assets/js',
    paths: {
       "common": "common",
       "jquery": "../libs/jquery/dist/jquery",
@@ -87,17 +87,16 @@ define([
    ========================================*/
 
    var option = {trigger: $("#editable_btn_1"), action: "click"};
-   $("#editable_text_1").editable(option, function(e){});
+   $("#editableName").editable(option, function(e){});
 
    var option2 = {trigger: $("#editable_btn_2"), action: "click"};
-   $("#editable_text_2").editable(option2, function(e){});
+   $("#editableCode").editable(option2, function(e){});
 
    var option3 = {trigger: $("#editable_btn_3"), action: "click"};
-   $("#editable_text_3").editable(option3, function(e){});
+   $("#editableAddress").editable(option3, function(e){});
 
    var option4 = {trigger: $("#editable_btn_4"), action: "click"};
-   $("#editable_text_4").editable(option4, function(e){});
-
+   $("#editablePhone").editable(option4, function(e){});
 
    })(jQuery);
 

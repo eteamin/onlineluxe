@@ -108,7 +108,7 @@ class RootController(BaseController):
                 return
             tmp[product_id] += 1
         elif value == 'down':
-            if int(basket.items.get(str(product.id))) == 0:
+            if int(basket.items.get(str(product.id))) == 1:
                 return
             tmp[product_id] += -1
         basket.items = tmp
@@ -135,6 +135,31 @@ class RootController(BaseController):
         session['display_name'] = user.display_name
         session.save()
         return 'True'
+
+    @expose('onlinelux.templates.finalize')
+    def finalize(self, basket_id):
+        user = User.current()
+        basket = DBSession. \
+            query(Purchase). \
+            filter(Purchase.user_id == user.user_id). \
+            filter(Purchase.id == basket_id). \
+            order_by(Purchase.id.desc()). \
+            first()
+        if not basket or basket.status != 'Selection':
+            redirect('/basket')
+        return dict(user=user, basket_id=basket_id)
+
+    @expose()
+    def order_basket(self, **kwargs):
+        user = User.current()
+        basket = DBSession. \
+            query(Purchase). \
+            filter(Purchase.user_id == user.user_id). \
+            filter(Purchase.id == kwargs.get('basket_id')).\
+            order_by(Purchase.id.desc()). \
+            first()
+        if not basket or basket.status != 'Selection':
+            redirect('/')
 
     @expose()
     def post_logout(self, came_from=lurl('/')):
