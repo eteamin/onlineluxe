@@ -1,5 +1,7 @@
 from datetime import datetime
 import json
+import string
+import random
 
 from sqlalchemy import Unicode, Integer, Column, DateTime, ForeignKey, Table, Enum, Boolean
 from sqlalchemy.orm import relationship, backref, synonym
@@ -69,9 +71,12 @@ class Purchase(DeclarativeBase):
     __tablename__ = 'purchase'
 
     id = Column(Integer, primary_key=True)
+    uid = Column(Unicode(10), unique=True)
     user_id = Column(Integer, ForeignKey('tg_user.user_id'), index=True)
     created = Column(DateTime, default=datetime.now)
     status = Column(Enum('Selection', 'Payment', 'Preparing', 'Sent', 'Delivered', name='order_status'), default='Selection')
+    authority = Column(Unicode, nullable=True)
+    ref_id = Column(Unicode, nullable=True)
 
     product = relationship(
         "Product",
@@ -87,3 +92,7 @@ class Purchase(DeclarativeBase):
         return json.loads(self._items)
 
     items = synonym('_items', descriptor=property(_get_items, _set_items))
+
+    def set_uid(self, size=6, chars=string.ascii_lowercase + string.digits):
+        uid = ''.join(random.choice(chars) for _ in range(size))
+        self.uid = 'pdt-{}'.format(uid)

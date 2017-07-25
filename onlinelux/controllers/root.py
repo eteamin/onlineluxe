@@ -1,28 +1,25 @@
 # -*- coding: utf-8 -*-
 """Main Controller"""
 
-from tg import expose, flash, require, url, lurl, session, abort
-from tg import request, redirect, tmpl_context
-from tg.i18n import ugettext as _, lazy_ugettext as l_
+from tg import expose, lurl, session, abort, request, redirect, tmpl_context, config
 from tg.exceptions import HTTPFound
-from tg import predicates
 from tgext.admin.tgadminconfig import BootstrapTGAdminConfig as TGAdminConfig
 from tgext.admin.controller import AdminController
 from sqlalchemy.orm import joinedload
 from sqlalchemy.exc import IntegrityError
 
 from onlinelux import model
-from onlinelux.controllers.secure import SecureController
 from onlinelux.model import DBSession, Article, Product, Purchase, User, Comment
 from onlinelux.lib.base import BaseController
+from onlinelux.lib.zarinpal_client import ZarinpalClient
 from onlinelux.controllers.error import ErrorController
 from onlinelux.controllers.admin import Area51Controller
+
 
 __all__ = ['RootController']
 
 
 class RootController(BaseController):
-    secc = SecureController()
     admin = AdminController(model, DBSession, config_type=TGAdminConfig)
     area51 = Area51Controller()
 
@@ -86,6 +83,7 @@ class RootController(BaseController):
                 user_id=user.user_id,
                 items={}
             )
+            basket.set_uid()
             basket.product.append(product)
             tmp = basket.items
             tmp[product.id] = 1
@@ -171,8 +169,51 @@ class RootController(BaseController):
             DBSession.flush()
         except IntegrityError:
             return dict(ok=False)
-        
 
+        final_price = sum([p.price * basket.items.get(str(p.id)) for p in basket.product])
+
+        zp = ZarinpalClient(amount=final_price)
+        authority = zp.make()
+        payment_url = config.get('payment')
+        charge = Charge(name=name, authority=authority, amount=amount)
+        DBSession.add(charge)
+        try:
+            DBSession.flush()
+            redirect('{}/{}'.format(payment_url, authority))
+        except IntegrityError:
+            pass
+
+        @expose()
+        def charge_callback(self, **kwargs):
+            authority = kwargs.get('Authority')
+            status = kwargs.get('Status')
+            if status == 'NOK':
+                return dict(ok=False)
+            elif status == 'OK':
+                charge = DBSession. \
+                    query(Charge). \
+                    filter(Charge.authority == authority). \
+                    one_or_none()
+                if charge:
+                    try:
+                        zp = ZarinpalClient(charge.amount)
+                        ref_id, status = zp.verify_payment(authority)
+                    except URLError:
+                        abort(409, detail='ZarinPal Temporary Down', passthrough='json')
+                    if ref_id:
+                        charge.ref_id = ref_id
+                        charge.status = 'Done'
+                        b = Robot(charge.name, charge.amount)
+                        b.notify()
+                        try:
+                            DBSession.flush()
+                            return HTTPFound(location=lurl('/'))
+                        except IntegrityError:
+                            return HTTPFound(location=lurl('/'))
+                    else:
+                        return HTTPFound(location=lurl('/'))
+                else:
+                    return HTTPFound(location=lurl('/'))
 
     @expose()
     def post_logout(self, came_from=lurl('/')):
