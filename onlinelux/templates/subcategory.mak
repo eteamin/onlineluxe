@@ -83,7 +83,7 @@
             <div class="row">
                 %for p in products:
                     <div class="products-item col-md-3 col-sm-12 col-xs-12">
-                        <a href="${base_url}/p/${p.id}/${p.name}" title="${p.name} " class="products-item-content">
+                        <a target="_blank" href="${base_url}/p/${p.id}/${p.name}" title="${p.name} " class="products-item-content">
                             <div class="products-item--photo">
                                 <img class="img-responsive" src="${base_url}/storage/${split_by_comma(p.images)[0]}" alt="">
                             </div>

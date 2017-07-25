@@ -46,8 +46,14 @@ class RootController(BaseController):
 
     @expose('onlinelux.templates.subcategory')
     def s(self, id, title, **kwargs):
-        # TODO: Pagination
-        products = DBSession.query(Product).filter(Product.subcat_id == id).all()
+        page = kwargs.get('page')
+        offset = (page - 1) * 9 if page else 0
+        products = DBSession.\
+            query(Product).\
+            filter(Product.subcat_id == id).\
+            order_by(Product.price.desc()).\
+            offset(offset).\
+            all()
         return dict(products=products)
 
     @expose('onlinelux.templates.purchases')

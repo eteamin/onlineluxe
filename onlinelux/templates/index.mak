@@ -14,12 +14,12 @@
                 <div class="row">
                     % for p in [p for p in pictures if p.genre == 'Banner']:
                     <div class="banner_photo col-xs-12">
-                        <a href="${p.href}"><img class="img-responsive" src="${base_url}/storage/${p.image}" alt=""></a>
+                        <a target="_blank" href="${p.href}"><img class="img-responsive" src="${base_url}/storage/${p.image}" alt=""></a>
                     </div>
                     % endfor
                     % for p in [p for p in pictures if p.genre == 'Special']:
                     <div class="banner_photo col-xs-12">
-                        <a href=""><img class="img-responsive" src="${base_url}/storage/${p.image}" alt=""></a>
+                        <a target="_blank" href=""><img class="img-responsive" src="${base_url}/storage/${p.image}" alt=""></a>
                     </div>
                     % endfor
                 </div>
@@ -126,7 +126,7 @@
                         <div class="carousel-inner" role="listbox">
                             % for p in [p for p in pictures if p.genre == 'bottomCarousel']:
                                 <div class="item">
-                                    <a href="${p.href}"><img data-name="${p.title}" src="${base_url}/storage/${p.image}" alt=""></a>
+                                    <a target="_blank" href="${p.href}"><img data-name="${p.title}" src="${base_url}/storage/${p.image}" alt=""></a>
                                 </div>
                             % endfor
                         </div>
@@ -142,7 +142,7 @@
                 </div>
                 % for p in [p for p in pictures if p.genre == 'video']:
                     <div class="video--item">
-                        <a href="${p.href}">
+                        <a target="_blank" href="${p.href}">
                             <img class="img-responsive" src="${base_url}/storage/${p.image}" alt="">
                             <div class="video--item_title">
                                 <i class="fa fa-camera"></i>
@@ -202,7 +202,7 @@
                                     </div>
                                     <div class="product_slider___info">
                                         <div class="product_slider--name">
-                                            <a href="">${l.name}</a>
+                                            <a target="_blank" href="">${l.name}</a>
                                         </div>
                                         <div class="product_slider--price">
                                             ${l.price} تومان
@@ -233,7 +233,7 @@
                                     </div>
                                     <div class="product_slider___info">
                                         <div class="product_slider--name">
-                                            <a href="">${l.name}</a>
+                                            <a target="_blank" href="">${l.name}</a>
                                         </div>
                                         <div class="product_slider--price">
                                             ${l.price} تومان
@@ -260,7 +260,7 @@
             <div class="row">
                 % for b in [p for p in pictures if p.genre == 'bottomBanner']:
                     <div class="page-banner_item col-md-3 col-sm-12 col-xs-12">
-                        <a href="${b.href}" class="page-banner_item__content">
+                        <a target="_blank" href="${b.href}" class="page-banner_item__content">
                             <img class="img-responsive" src="${base_url}/storage/${b.image}" alt="">
                         </a>
                     </div>
@@ -293,7 +293,7 @@
                                         </div>
                                         <div class="product_slider___info">
                                             <div class="product_slider--name">
-                                                <a href="">${t.name}</a>
+                                                <a target="_blank" href="">${t.name}</a>
                                             </div>
                                             <div class="product_slider--price">
                                                 ${t.price} تومان
