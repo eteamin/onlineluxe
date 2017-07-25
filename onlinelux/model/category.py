@@ -77,6 +77,7 @@ class Purchase(DeclarativeBase):
     status = Column(Enum('Selection', 'Payment', 'Preparing', 'Sent', 'Delivered', name='order_status'), default='Selection')
     authority = Column(Unicode, nullable=True)
     ref_id = Column(Unicode, nullable=True)
+    final_price = Column(Integer, default=0)
 
     product = relationship(
         "Product",
@@ -87,6 +88,7 @@ class Purchase(DeclarativeBase):
 
     def _set_items(self, data):
         self._items = json.dumps(data)
+        self._update_final_price()
 
     def _get_items(self):
         return json.loads(self._items)
@@ -96,3 +98,6 @@ class Purchase(DeclarativeBase):
     def set_uid(self, size=6, chars=string.ascii_lowercase + string.digits):
         uid = ''.join(random.choice(chars) for _ in range(size))
         self.uid = 'pdt-{}'.format(uid)
+
+    def _update_final_price(self):
+        self.final_price = sum([p.price * self.items.get(str(p.id)) for p in self.product])

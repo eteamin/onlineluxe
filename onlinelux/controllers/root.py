@@ -115,27 +115,6 @@ class RootController(BaseController):
         DBSession.flush()
         redirect('/basket')
 
-    @expose()
-    def comment(self, **kwargs):
-        text = kwargs.get('text')
-        product_id = kwargs.get('product_id')
-        product_title = kwargs.get('product_title')
-        c = Comment(text=text, product_id=product_id, user_id=User.current().user_id)
-        DBSession.add(c)
-        DBSession.flush()
-        redirect('/p/{}/{}'.format(product_id, product_title))
-
-    @expose()
-    def post_login(self, came_from=lurl('/')):
-        if not request.identity:
-            return 'False'
-        user = DBSession.query(User).filter(User.user_name == request.remote_user).one_or_none()
-        session['user_id'] = user.user_id
-        session['user_name'] = user.user_name
-        session['display_name'] = user.display_name
-        session.save()
-        return 'True'
-
     @expose('onlinelux.templates.finalize')
     def finalize(self, basket_id):
         user = User.current()
@@ -171,9 +150,7 @@ class RootController(BaseController):
         except IntegrityError:
             return dict(ok=False)
 
-        final_price = sum([p.price * basket.items.get(str(p.id)) for p in basket.product])
-
-        zp = ZarinpalClient(amount=final_price, basket_uid=basket.uid)
+        zp = ZarinpalClient(amount=basket.final_price, basket_uid=basket.uid)
         authority = zp.make()
         payment_url = config.get('payment')
         basket.authority = authority
@@ -199,18 +176,38 @@ class RootController(BaseController):
                 filter(Purchase.user_id == user.user_id). \
                 one_or_none()
             if basket and basket.status == 'Payment':
-                final_price = sum([p.price * basket.items.get(str(p.id)) for p in basket.product])
-                zp = ZarinpalClient(final_price, basket.uid)
+                zp = ZarinpalClient(basket.final_price, basket.uid)
                 ref_id, status = zp.verify_payment(authority)
                 if ref_id:
                     basket.ref_id = ref_id
                     basket.status = 'Preparing'
-                    TelegramNotifier(basket, final_price)
+                    TelegramNotifier(basket, basket.final_price)
                     DBSession.flush()
                 else:
                     redirect('/basket')
             else:
                 redirect('/basket')
+
+    @expose()
+    def comment(self, **kwargs):
+        text = kwargs.get('text')
+        product_id = kwargs.get('product_id')
+        product_title = kwargs.get('product_title')
+        c = Comment(text=text, product_id=product_id, user_id=User.current().user_id)
+        DBSession.add(c)
+        DBSession.flush()
+        redirect('/p/{}/{}'.format(product_id, product_title))
+
+    @expose()
+    def post_login(self, came_from=lurl('/')):
+        if not request.identity:
+            return 'False'
+        user = DBSession.query(User).filter(User.user_name == request.remote_user).one_or_none()
+        session['user_id'] = user.user_id
+        session['user_name'] = user.user_name
+        session['display_name'] = user.display_name
+        session.save()
+        return 'True'
 
     @expose()
     def post_logout(self, came_from=lurl('/')):

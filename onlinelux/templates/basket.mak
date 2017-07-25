@@ -74,7 +74,7 @@
             </div>
             <div class="product-total">
                 <span class="pricelabel">مجموع مبلغ قابل پرداخت : </span>
-                <span class="price">${sum([p.price * basket.items.get(str(p.id)) for p in basket.product])} تومان</span>
+                <span class="price">${basket.final_price} تومان</span>
             </div>
              <div class="button_sec">
                 <div class="button">
