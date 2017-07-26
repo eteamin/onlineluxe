@@ -65,7 +65,7 @@
                             <td>${p.price} تومان</td>
                             <td>${p.price * basket.items.get(str(p.id))} تومان</td>
                             <td>
-                                <button class="icon-cancel-circle"></button>
+                                <button onclick="window.location = '${base_url}/remove_from_basket/${p.id}'" class="icon-cancel-circle"></button>
                             </td>
                         </tr>
                         %endfor

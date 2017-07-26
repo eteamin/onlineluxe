@@ -80,8 +80,26 @@ class RootController(BaseController):
             filter(Purchase.user_id == User.current().user_id).\
             order_by(Purchase.id.desc()).\
             first()
-        basket = basket if basket and basket.status == 'Selection' else None
+        basket = basket if basket and basket.status == 'Selection' and len(basket.product) > 0 else None
         return dict(basket=basket)
+
+    @expose()
+    def remove_from_basket(self, p_id):
+        user = User.current()
+        basket = DBSession. \
+            query(Purchase). \
+            filter(Purchase.user_id == user.user_id). \
+            order_by(Purchase.id.desc()). \
+            first()
+        product = DBSession.query(Product).filter(Product.id == p_id).one_or_none()
+        if basket and basket.status == 'Selection':
+            if product in basket.product:
+                basket.product.remove(product)
+                tmp = basket.items
+                del tmp[str(product.id)]
+                basket.items = tmp
+                DBSession.flush()
+            redirect('/basket')
 
     @expose()
     def add_to_basket(self, p_id):
