@@ -1,8 +1,4 @@
 <%inherit file="local:templates.master"/>
-<%
-    def split_by_comma(s):
-        return s.split(',') if isinstance(s, str) else None
-%>
 
 <section class="page-top">
     <div class="container">
