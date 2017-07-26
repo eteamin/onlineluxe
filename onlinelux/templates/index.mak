@@ -2,6 +2,10 @@
 <%
     def split_by_comma(s):
         return s.split(',') if isinstance(s, str) else None
+
+    def dash_for_space(s):
+        return s.replace(' ', '-')
+
     from khayyam import JalaliDatetime
 %>
 
@@ -202,7 +206,7 @@
                                     </div>
                                     <div class="product_slider___info">
                                         <div class="product_slider--name">
-                                            <a target="_blank" href="">${l.name}</a>
+                                            <a target="_blank" href="${base_url}/p/${l.id}/${dash_for_space(l.name)}">${l.name}</a>
                                         </div>
                                         <div class="product_slider--price">
                                             ${l.price} تومان
@@ -233,7 +237,7 @@
                                     </div>
                                     <div class="product_slider___info">
                                         <div class="product_slider--name">
-                                            <a target="_blank" href="">${l.name}</a>
+                                            <a target="_blank" href="${base_url}/p/${l.id}/${dash_for_space(l.name)}">${l.name}</a>
                                         </div>
                                         <div class="product_slider--price">
                                             ${l.price} تومان
@@ -293,7 +297,7 @@
                                         </div>
                                         <div class="product_slider___info">
                                             <div class="product_slider--name">
-                                                <a target="_blank" href="">${t.name}</a>
+                                                <a target="_blank" href="${base_url}/p/${l.id}/${dash_for_space(l.name)}">${t.name}</a>
                                             </div>
                                             <div class="product_slider--price">
                                                 ${t.price} تومان
