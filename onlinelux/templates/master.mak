@@ -46,15 +46,15 @@
     							<a href="${tg.url('/basket')}"><i class="icon icon-cart3"></i></a>
     							<span class="add-to-cart__count">0</span>
     						</div>
-    						<a href="#" class="compare">
-    							<i class="icon icon-git-compare"></i>
+                            <a href="${tg.url('/blog')}" class="compare">
+    							<i class="glyphicon glyphicon-blackboard"></i>
     						</a>
+                            <a class="compare" data-toggle="modal" data-target="#modaLogin" href="#">
+    							<i class="icon icon-user"></i>
+    						</a>
+
     					</div>
     					<!-- navbar-main_product-tools -->
-
-    					<button data-toggle="modal" data-target="#modaLogin" class="btn-login">
-    						<i class="icon icon-user"></i>
-    					</button>
 
     					<!-- <a id="navbarBtnToggle" href="#" class="navbar-main_toggle-menu">
     						<i class="fa fa-bars fa-2x"></i>
@@ -76,7 +76,11 @@
     								<span class="icon-bar"></span>
     								<span class="icon-bar"></span>
     							</button>
-    							<a class="navbar-vip" href="#">کالای حراجی</a>
+                                %if 'user_id' not in session:
+    							    <a class="navbar-vip" data-toggle="modal" data-target="#modaLogin" href="#">ورود به حساب کاربری</a>
+                                %else:
+                                    <a class="navbar-basket" href="${tg.url('/basket')}">مشاهده سبد خرید</a>
+                                %endif
     						</div>
     					</div>
 
