@@ -239,6 +239,7 @@
                                         <div class="product_slider--name">
                                             <a target="_blank" href="${base_url}/p/${l.id}/${dash_for_space(l.name)}">${l.name}</a>
                                         </div>
+
                                         <div class="product_slider--price">
                                             ${l.price} تومان
                                         </div>

@@ -4,13 +4,16 @@
     def split_by_comma(s):
         return s.split(',') if isinstance(s, str) else None
     from khayyam import JalaliDatetime
+
+    def dash_for_space(s):
+        return s.replace(' ', '-')
 %>
 
 <section class="page-top">
     <div class="container">
         <div class="page-banner">
             <div class="row">
-                % for b in bottom_banners:
+                % for p in [p for p in pictures if p.genre == 'bottomBanners']:
                     <div class="page-banner_item col-md-3 col-sm-12 col-xs-12">
                         <a href="${b.href}" class="page-banner_item__content">
                             <img class="img-responsive" src="${base_url}/storage/${b.image}" alt="">
@@ -81,21 +84,26 @@
         <div class="page-main-products col-md-9 col-sm-12 col-xs-12 pull-left">
 
             <div class="row">
+            %if products:
+
                 %for p in products:
                     <div class="products-item col-md-3 col-sm-12 col-xs-12">
-                        <a target="_blank" href="${base_url}/p/${p.id}/${p.name}" title="${p.name} " class="products-item-content">
+                        <a target="_blank" href="${base_url}/p/${p.id}/${dash_for_space(p.name)}" title="${p.name} " class="products-item-content">
                             <div class="products-item--photo">
                                 <img class="img-responsive" src="${base_url}/storage/${split_by_comma(p.images)[0]}" alt="">
                             </div>
                             <div class="products-item--info">
                                 <h3 class="info-title">${p.name} </h3>
-                                <div class="info-old-price">${p.price} <span>تومان</span></div>
+##                                 <div class="info-old-price">${p.price} <span>تومان</span></div>
                                 <div class="info-price">${p.price} <span>تومان</span></div>
                             </div>
                         </a>
                     </div>
                 %endfor
                 <!-- products-item -->
+            %else:
+                <p>محصولی یافت نشد</p>
+            %endif
             </div>
             <!-- row -->
             <nav class="page-pagination">

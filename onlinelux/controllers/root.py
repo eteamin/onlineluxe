@@ -56,6 +56,18 @@ class RootController(BaseController):
             all()
         return dict(products=products)
 
+    @expose('onlinelux.templates.subcategory')
+    def search(self, query, **kwargs):
+        page = kwargs.get('page')
+        offset = (page - 1) * 9 if page else 0
+        products = DBSession.\
+            query(Product).\
+            filter(Product.name.contains(query)).\
+            order_by(Product.price.desc()).\
+            offset(offset).\
+            all()
+        return dict(products=products)
+
     @expose('onlinelux.templates.purchases')
     def purchases(self):
         purchases = DBSession.query(Purchase).filter(Purchase.user_id == User.current().user_id).all()

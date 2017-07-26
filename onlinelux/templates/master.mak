@@ -34,9 +34,9 @@
     					<!-- navbar-main_logo -->
 
     					<div class="navbar-main_product-tools col-md-6 col-sm-12 col-xs-12 pull-right">
-    						<form action="">
-    							<input type="text" placeholder="جستجو در محصولات">
-    							<button type="button"><i class="fa fa-search"></i></button>
+    						<form action="${tg.url('/search')}" method="post">
+    							<input type="text" name="query" placeholder="جستجو در محصولات">
+    							<button type="submit"><i class="fa fa-search"></i></button>
     						</form>
     					</div>
     					<!-- navbar-main_product-tools -->
