@@ -12,6 +12,7 @@ requirejs.config({
         "waypoints": "../libs/waypoints/lib/jquery.waypoints",
         "jcarousel": "../libs/PikaChoose/lib/jcarousel.min",
         "pikachoose": "../libs/PikaChoose/lib/jquery.pikachoose.full",
+        "alertify": "../libs/alertify/alertify.min"
     },
     shim: {
         "bootstrap": {
@@ -60,7 +61,8 @@ define([
     "select2",
     "scrollIt",
     "waypoints",
-    "pikachoose"
+    "pikachoose",
+    "alertify"
 ], function(
     common,
     bootstrap,
@@ -69,12 +71,13 @@ define([
     select2,
     scrollIt,
     waypoints,
-    pikachoose
+    pikachoose,
+    alertify
 ) {
     (function($) {
 
       $("#pikame").PikaChoose({
-         carousel:true,
+         carousel:true
       });
 
       /*========================================
@@ -82,28 +85,28 @@ define([
        ========================================*/
 
         // var cart = $('.shopping-cart'),
-        //      cartCountCont = cart.find('.add-to-cart__count'),
-        //      cartCount = parseInt(cartCountCont.text(), 10),
-        //      addToCart = $('.btn-add-to-cart'),
-        //      compare = $('.compare'),
-        //      btnCompare = $('.btn-compare');
+        //      cartCountCont = cart.find('.add-to-cart__count');
+        //      // cartCount = parseInt(cartCountCont.text(), 10);
+        //      // addToCart = $('.btn-add-to-cart'),
+        //      // compare = $('.compare'),
+        //      // btnCompare = $('.btn-compare');
         //
-        //  addToCart.on('click', function (evt) {
-        //
-        //    evt.preventDefault();
-        //    evt.stopPropagation();
+        //  // addToCart.on('click', function (evt) {
+        //  //
+        //  //   evt.preventDefault();
+        //  //   evt.stopPropagation();
         //
         //    cart.addClass('is-add');
         //    cart.addClass('clicked');
-        //    cart.one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
-        //    function (e) {
-        //        cart.removeClass('clicked');
-        //    });
-        //
-        //    cartCount += 1;
-        //    cartCountCont.text(cartCount);
-        //
-        //  });
+           // cart.one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+           // function (e) {
+           //     cart.removeClass('clicked');
+           // });
+
+           // cartCount += 1;
+           // cartCountCont.text(cartCount);
+
+         // });
 
          // btnCompare.on('click', function () {
          //    compare.toggleClass('active');
@@ -114,7 +117,6 @@ define([
          ========================================*/
 
          $.scrollIt();
-
          $('.page-product_details').waypoint(function(direction) {
             
             if (direction === 'down') {

@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>آنلاین لوکس - خرید بدلیجات</title>
+    <title>${title if title else ''}</title>
 
     <meta name="description" content="تجربه ای متفاوت از خرید آنلاین بدلیجات"/>
     <meta name="keywords" content="نیم ست,ست چوبی,انشگتر,دسنبد,ست,دستبند,بدلیجات"/>
@@ -49,7 +49,7 @@
                                     <a data-toggle="modal" data-target="#modaLogin" href="#"><i class="icon icon-cart3"></i></a>
                                 %endif
 
-    							<span class="add-to-cart__count">0</span>
+    							<span class="add-to-cart__count">12</span>
     						</div>
                             <a href="${tg.url('/blog')}" class="compare">
     							<i class="glyphicon glyphicon-blackboard"></i>

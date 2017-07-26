@@ -11,6 +11,7 @@ from sqlalchemy.exc import IntegrityError
 from onlinelux import model
 from onlinelux.model import DBSession, Article, Product, Purchase, User, Comment
 from onlinelux.lib.base import BaseController
+from onlinelux.lib.helpers import dash_for_space
 from onlinelux.lib.zarinpal_client import ZarinpalClient
 from onlinelux.lib.telegram_bot import TelegramNotifier
 from onlinelux.controllers.error import ErrorController
@@ -81,7 +82,7 @@ class RootController(BaseController):
             order_by(Purchase.id.desc()).\
             first()
         basket = basket if basket and basket.status == 'Selection' and len(basket.product) > 0 else None
-        return dict(basket=basket)
+        return dict(basket=basket, title=u'سبد خرید - آنلاین لوکس')
 
     @expose()
     def remove_from_basket(self, p_id):
@@ -119,7 +120,7 @@ class RootController(BaseController):
                 tmp[product.id] = 1
                 basket.items = tmp
                 DBSession.flush()
-            redirect('/basket')
+            redirect('/p/{}/{}'.format(product.id, dash_for_space(product.name)))
         if not basket or basket.status != 'Selection':
             basket = Purchase(
                 user_id=user.user_id,
@@ -132,7 +133,7 @@ class RootController(BaseController):
             basket.items = tmp
             DBSession.add(basket)
             DBSession.flush()
-            redirect('/basket')
+            redirect('/p/{}/{}'.format(product.id, dash_for_space(product.name)))
 
     @expose()
     def change_count(self, product_id, value):

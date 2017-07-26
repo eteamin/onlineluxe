@@ -18,6 +18,10 @@ def current_year():
     return now.strftime('%Y')
 
 
+def dash_for_space(s):
+    return s.replace(' ', '-')
+
+
 def icon(icon_name):
     return Markup('<i class="glyphicon glyphicon-%s"></i>' % icon_name)
 

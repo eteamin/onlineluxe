@@ -137,12 +137,11 @@
                                 <!-- product-guide -->
                                 <div class="box product-buy-btn">
                                     %if 'user_id' in session:
-                                        <a class="btn btn-add-to-cart" href="" onclick="window.location = '${base_url}/add_to_basket/${product.id}'">
+                                        <a class="btn btn-add-to-cart" href="" onclick="window.location = '${base_url}/add_to_basket/${product.id}'">افزودن به سبد خرید <i class="icon icon-cart3"></i></a>
                                     %else:
                                         <a class="btn btn-add-to-cart" data-toggle="modal" data-target="#modaLogin" href="#">
                                     %endif
 
-                                      افزودن به سبد خرید <i class="icon icon-cart3"></i>
                                    </a>
                                 </div>
                                 <!-- product-buy-btn -->
