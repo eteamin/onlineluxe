@@ -43,7 +43,12 @@
 
     					<div class="navbar-main_product-elm col-md-2 col-sm-12 col-xs-12 col-md-offset-1">
     						<div class="shopping-cart">
-    							<a href="${tg.url('/basket')}"><i class="icon icon-cart3"></i></a>
+                                %if 'user_id' in session:
+                                    <a href="${tg.url('/basket')}"><i class="icon icon-cart3"></i></a>
+                                %else:
+                                    <a data-toggle="modal" data-target="#modaLogin" href="#"><i class="icon icon-cart3"></i></a>
+                                %endif
+
     							<span class="add-to-cart__count">0</span>
     						</div>
                             <a href="${tg.url('/blog')}" class="compare">

@@ -136,7 +136,12 @@
                                 </div>
                                 <!-- product-guide -->
                                 <div class="box product-buy-btn">
-                                    <a class="btn btn-add-to-cart" href="" onclick="window.location = '${base_url}/add_to_basket/${product.id}'">
+                                    %if 'user_id' in session:
+                                        <a class="btn btn-add-to-cart" href="" onclick="window.location = '${base_url}/add_to_basket/${product.id}'">
+                                    %else:
+                                        <a class="btn btn-add-to-cart" data-toggle="modal" data-target="#modaLogin" href="#">
+                                    %endif
+
                                       افزودن به سبد خرید <i class="icon icon-cart3"></i>
                                    </a>
                                 </div>
@@ -245,7 +250,12 @@ ${c.text}
                             <input class="hidden" name="product_id" value="${product.id}">
                             <input class="hidden" name="product_title" value="${product.name}">
                             <div class="col-md-2 col-sm-2 col-xs-4">
-                                <input type="submit" value="ارسال نظر">
+                                %if 'user_id' in session:
+                                    <input type="submit" value="ارسال نظر">
+                                %else:
+                                    <input data-toggle="modal" data-target="#modaLogin" value="ارسال نظر" type="button">
+                                %endif
+
                             </div>
                         </div>
                         <div class="clearfix"></div>

@@ -216,6 +216,11 @@ class RootController(BaseController):
         redirect('/p/{}/{}'.format(product_id, product_title))
 
     @expose()
+    def log_out(self):
+        session.delete()
+        redirect('/logout_handler')
+
+    @expose()
     def post_login(self, came_from=lurl('/')):
         if not request.identity:
             return 'False'

@@ -81,33 +81,33 @@ define([
        =               add to cart             =
        ========================================*/
 
-        var cart = $('.shopping-cart'),
-             cartCountCont = cart.find('.add-to-cart__count'),
-             cartCount = parseInt(cartCountCont.text(), 10),
-             addToCart = $('.btn-add-to-cart'),
-             compare = $('.compare'),
-             btnCompare = $('.btn-compare');
+        // var cart = $('.shopping-cart'),
+        //      cartCountCont = cart.find('.add-to-cart__count'),
+        //      cartCount = parseInt(cartCountCont.text(), 10),
+        //      addToCart = $('.btn-add-to-cart'),
+        //      compare = $('.compare'),
+        //      btnCompare = $('.btn-compare');
+        //
+        //  addToCart.on('click', function (evt) {
+        //
+        //    evt.preventDefault();
+        //    evt.stopPropagation();
+        //
+        //    cart.addClass('is-add');
+        //    cart.addClass('clicked');
+        //    cart.one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+        //    function (e) {
+        //        cart.removeClass('clicked');
+        //    });
+        //
+        //    cartCount += 1;
+        //    cartCountCont.text(cartCount);
+        //
+        //  });
 
-         addToCart.on('click', function (evt) {
-
-           evt.preventDefault();
-           evt.stopPropagation();
-
-           cart.addClass('is-add');
-           cart.addClass('clicked');
-           cart.one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
-           function (e) {
-               cart.removeClass('clicked');
-           });
-
-           cartCount += 1;
-           cartCountCont.text(cartCount);
-
-         });
-
-         btnCompare.on('click', function () {
-            compare.toggleClass('active');
-         });
+         // btnCompare.on('click', function () {
+         //    compare.toggleClass('active');
+         // });
 
         /*========================================
          =           fixed navbar                =
