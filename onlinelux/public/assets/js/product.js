@@ -12,7 +12,7 @@ requirejs.config({
         "waypoints": "../libs/waypoints/lib/jquery.waypoints",
         "jcarousel": "../libs/PikaChoose/lib/jcarousel.min",
         "pikachoose": "../libs/PikaChoose/lib/jquery.pikachoose.full",
-        "alertify": "../libs/alertify/alertify.min"
+        "swal": "../libs/sweetalert/sweetalert.min"
     },
     shim: {
         "bootstrap": {
@@ -62,7 +62,7 @@ define([
     "scrollIt",
     "waypoints",
     "pikachoose",
-    "alertify"
+    "swal"
 ], function(
     common,
     bootstrap,
@@ -72,7 +72,7 @@ define([
     scrollIt,
     waypoints,
     pikachoose,
-    alertify
+    swal
 ) {
     (function($) {
 

@@ -102,7 +102,7 @@ class RootController(BaseController):
                 DBSession.flush()
             redirect('/basket')
 
-    @expose()
+    @expose('json')
     def add_to_basket(self, p_id):
         user = User.current()
         basket = DBSession. \
@@ -113,14 +113,14 @@ class RootController(BaseController):
         product = DBSession.query(Product).filter(Product.id == p_id).one_or_none()
         if basket and basket.status == 'Selection':
             if product in basket.product:
-                pass
+                return dict()
             elif product not in basket.product:
                 basket.product.append(product)
                 tmp = basket.items
                 tmp[product.id] = 1
                 basket.items = tmp
                 DBSession.flush()
-            redirect('/p/{}/{}'.format(product.id, dash_for_space(product.name)))
+            return dict()
         if not basket or basket.status != 'Selection':
             basket = Purchase(
                 user_id=user.user_id,
@@ -133,7 +133,7 @@ class RootController(BaseController):
             basket.items = tmp
             DBSession.add(basket)
             DBSession.flush()
-            redirect('/p/{}/{}'.format(product.id, dash_for_space(product.name)))
+            return dict()
 
     @expose()
     def change_count(self, product_id, value):

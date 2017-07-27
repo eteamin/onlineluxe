@@ -137,9 +137,9 @@
                                 <!-- product-guide -->
                                 <div class="box product-buy-btn">
                                     %if 'user_id' in session:
-                                        <a class="btn btn-add-to-cart" href="" onclick="window.location = '${base_url}/add_to_basket/${product.id}'">افزودن به سبد خرید <i class="icon icon-cart3"></i></a>
+                                        <a id="add-to-basket" class="btn btn-add-to-cart" onclick="return addToBasket();">افزودن به سبد خرید <i class="icon icon-cart3"></i></a>
                                     %else:
-                                        <a class="btn btn-add-to-cart" data-toggle="modal" data-target="#modaLogin" href="#">
+                                        <a class="btn btn-add-to-cart" data-toggle="modal" data-target="#modaLogin" href="#">افزودن به سبد خرید <i class="icon icon-cart3"></i>
                                     %endif
 
                                    </a>
@@ -271,3 +271,26 @@ ${c.text}
 </main>
 <!-- page-main -->
 <script data-main="${tg.url('/assets/js/product.js')}" src="${tg.url('/assets/libs/requirejs/require.js')}"></script>
+
+<script>
+    var action = true;
+    function addToBasket() {
+        var addButton = $('#add-to-basket');
+        addButton.attr('disabled', 'disabled');
+        if (action) {
+            $.get(
+                '${base_url}' + '/add_to_basket/' + '${product.id}',
+                    function (resp) {
+                        action = false;
+                        swal({
+                              'title': 'آنلاین لوکس',
+                              'text': 'کالا به سبد خرید شما افزوده شد',
+                              'type': 'success',
+                              timer: 2500,
+                              showConfirmButton: false
+                        });
+                    }
+            )
+        }
+    }
+</script>
