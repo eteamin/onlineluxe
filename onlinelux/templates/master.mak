@@ -97,7 +97,7 @@
     									<div class="container">
     										<ul>
                                                 %for s in c.subcategory:
-    											    <li><a href="">${s.title}</a></li>
+    											    <li><a href="${base_url}/s/${s.id}/${s.title}">${s.title}</a></li>
                                                 %endfor
     										</ul>
     									</div>

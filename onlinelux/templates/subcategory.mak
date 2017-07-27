@@ -1,6 +1,7 @@
 <%inherit file="local:templates.master"/>
 
 <%
+    import math
     def split_by_comma(s):
         return s.split(',') if isinstance(s, str) else None
     from khayyam import JalaliDatetime
@@ -108,11 +109,13 @@
             <!-- row -->
             <nav class="page-pagination">
               <ul class="pagination">
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+               %for i in range(math.ceil(total / 16)):
+                   %if subcat_id:
+                        <li class="${'active' if int(page) == int(i + 1) else ''}"><a href="${base_url}/s/${subcat_id}/${subcat_title}${'?page={}'.format(i + 1)}">${i + 1}</a></li>
+                   %elif query:
+                        <li class="${'active' if int(page) == int(i + 1) else ''}"><a href="${base_url}/search/${query}${'?page={}'.format(i + 1)}">${i + 1}</a></li>
+                   %endif
+               %endfor
               </ul>
             </nav>
         </div>

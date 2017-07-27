@@ -55,16 +55,22 @@ class RootController(BaseController):
 
     @expose('onlinelux.templates.subcategory')
     def s(self, id, title, **kwargs):
-        page = kwargs.get('page')
-        offset = (page - 1) * 9 if page else 0
-        products = DBSession.\
+        page = kwargs.get('page') or 1
+        offset = (int(page) - 1) * 16
+        result = DBSession.\
             query(Product).\
             filter(Product.subcat_id == id).\
-            filter(Product.quantity > 0).\
-            order_by(Product.price.desc()).\
-            offset(offset).\
-            all()
-        return dict(products=products, title=u'آنلاین لوکس - {}'.format(dash_for_space(title)))
+            filter(Product.quantity > 0)
+
+        products = result.order_by(Product.price.desc()).offset(offset).limit(16).all()
+        return dict(
+            total=len(result.all()),
+            products=products,
+            title=u'آنلاین لوکس محصولات دسته بندی - {}'.format(dash_for_space(title)),
+            subcat_title=title,
+            subcat_id=id,
+            page=page
+        )
 
     @expose('onlinelux.templates.magazine')
     def magazine(self, **kwargs):
@@ -99,16 +105,21 @@ class RootController(BaseController):
 
     @expose('onlinelux.templates.subcategory')
     def search(self, query, **kwargs):
-        page = kwargs.get('page')
-        offset = (page - 1) * 9 if page else 0
-        products = DBSession.\
-            query(Product).\
-            filter(Product.name.contains(query)). \
-            filter(Product.quantity > 0). \
-            order_by(Product.price.desc()).\
-            offset(offset).\
-            all()
-        return dict(products=products, title=u'آنلاین لوکس - نتایج جستجوی {}'.format(dash_for_space(query)))
+        page = kwargs.get('page') or 1
+        offset = (int(page) - 1) * 16
+        result = DBSession. \
+            query(Product). \
+            filter(Product.name.contains(query)).\
+            filter(Product.quantity > 0)
+
+        products = result.order_by(Product.price.desc()).offset(offset).limit(16).all()
+        return dict(
+            products=products,
+            title=u'آنلاین لوکس - نتایج جستجوی {}'.format(dash_for_space(query)),
+            page=page,
+            total=len(result.all()),
+            query=query
+        )
 
     @expose('onlinelux.templates.purchases')
     def purchases(self):
