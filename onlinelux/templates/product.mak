@@ -70,13 +70,13 @@
                     <div class="product-info-text_content">
 
                         <div class="product-info--title">
-                            <h3><a href="#">${product.name}</a><span class="off-label">${int((product.old_price * 100) / product.price)}٪ تخفیف</span></h3>
+                            <h3><a href="">${product.name}</a><span class="off-label">${100 - int((product.price * 100) / product.old_price)}٪ تخفیف</span></h3>
                             <div class="product-info--more-options">
                                 <div class="rating">
-                                    <div class="stars" data-score="4"></div>
-                                    <div class="score-label">امتیاز : <span>۴.۲</span></div>
+                                    <div class="stars" data-score="5"></div>
+##                                     <div class="score-label">امتیاز : <span>۴.۲</span></div>
                                 </div>
-                                <a href="#" class="btn-compare"><i class="icon icon-git-compare"></i></a>
+##                                 <a href="" class="btn-compare"><i class="icon icon-git-compare"></i></a>
                             </div>
                         </div>
                         <!-- product-info--title -->

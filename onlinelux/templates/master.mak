@@ -51,7 +51,7 @@
 
 ##     							<span class="add-to-cart__count"></span>
     						</div>
-                            <a href="${tg.url('/blog')}" class="compare">
+                            <a href="${tg.url('/magazine')}" class="compare">
     							<i class="glyphicon glyphicon-blackboard"></i>
     						</a>
                             <a class="compare" data-toggle="modal" data-target="#modaLogin" href="#">
