@@ -30,7 +30,7 @@
                 <div class="product-slider col-md-4 col-sm-12 col-xs-12 pull-right">
                     <div class="product-slider_content">
                         <div class="product-code">
-                            <div class="code">کد محصول : <span class="product-code-value">${product.uid}</span></div>
+                            <div class="code">کد محصول : <span class="product-code-value">${product.id}</span></div>
                             <div class="product-favorite">
                                 <input type="checkbox">
                                 <label></label>

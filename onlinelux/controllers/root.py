@@ -42,7 +42,6 @@ class RootController(BaseController):
         product = DBSession.\
             query(Product).\
             options(joinedload('comments.tg_user')).\
-            filter(Comment.accepted is True).\
             filter(Product.id == id).\
             one_or_none()
         if not product:
@@ -65,6 +64,18 @@ class RootController(BaseController):
             offset(offset).\
             all()
         return dict(products=products, title=u'آنلاین لوکس - {}'.format(dash_for_space(title)))
+
+    @expose('onlinelux.templates.magazine')
+    def magazine(self, **kwargs):
+        page = kwargs.get('page')
+        offset = (page - 1) * 9 if page else 0
+        articles = DBSession.\
+            query(Article).\
+            order_by(Article.id.desc()).\
+            offset(offset).\
+            all()
+        top = DBSession.query(Article).order_by(Article.views.desc()).limit(3).all()
+        return dict(articles=articles, top=top, title=u'آنلاین لوکس - مجله')
 
     @expose('onlinelux.templates.subcategory')
     def search(self, query, **kwargs):

@@ -4,9 +4,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>${title}</title>
+    <title>${title or ''}</title>
 
-    <meta name="description" content="${description if description else title}"/>
+    <meta name="description" content="${description or title or ''}"/>
     <meta name="keywords" content="نیم ست،ست چوبی،انشگتر،دسنبد،ست،دستبند،بدلیجات"/>
     <link rel="canonical" href="http://onlinelux.ir" />
     <meta property="og:locale" content="fa_IR" />

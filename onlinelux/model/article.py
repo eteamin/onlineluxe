@@ -12,5 +12,6 @@ class Article(DeclarativeBase):
     title = Column(Unicode, nullable=False)
     description = Column(Unicode, nullable=False)
     image = Column(Unicode(25), nullable=False, unique=True)
+    views = Column(Integer, default=0)
     created = Column(DateTime, default=datetime.now)
 
