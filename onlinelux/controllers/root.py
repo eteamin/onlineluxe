@@ -39,7 +39,12 @@ class RootController(BaseController):
 
     @expose('onlinelux.templates.product')
     def p(self, id, title):
-        product = DBSession.query(Product).options(joinedload('comments.tg_user')).filter(Product.id == id).one_or_none()
+        product = DBSession.\
+            query(Product).\
+            options(joinedload('comments.tg_user')).\
+            filter(Comment.accepted is True).\
+            filter(Product.id == id).\
+            one_or_none()
         if not product:
             abort(404)
 
