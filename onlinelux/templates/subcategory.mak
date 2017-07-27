@@ -94,7 +94,7 @@
                             </div>
                             <div class="products-item--info">
                                 <h3 class="info-title">${p.name} </h3>
-##                                 <div class="info-old-price">${p.price} <span>تومان</span></div>
+                                <div class="info-old-price">${p.old_price} <span>تومان</span></div>
                                 <div class="info-price">${p.price} <span>تومان</span></div>
                             </div>
                         </a>

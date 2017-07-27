@@ -56,6 +56,7 @@ class Product(DeclarativeBase):
     quantity = Column(Integer, nullable=False)
     images = Column(Unicode, unique=True, nullable=False)  # comma-sep image_path specified by StorageManager
     price = Column(Integer, nullable=False)
+    old_price = Column(Integer, nullable=False)
     created = Column(DateTime, default=datetime.now)
     comments = relationship('Comment', backref=backref('product'), cascade="all, delete-orphan")
 

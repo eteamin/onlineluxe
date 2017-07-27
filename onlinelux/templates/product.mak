@@ -70,7 +70,7 @@
                     <div class="product-info-text_content">
 
                         <div class="product-info--title">
-                            <h3><a href="#">${product.name}</a><span class="off-label">${''}٪ تخفیف</span></h3>
+                            <h3><a href="#">${product.name}</a><span class="off-label">${int((product.old_price * 100) / product.price)}٪ تخفیف</span></h3>
                             <div class="product-info--more-options">
                                 <div class="rating">
                                     <div class="stars" data-score="4"></div>
@@ -84,7 +84,7 @@
                         <div class="product-info--content">
                             <div class="box-row">
                                 <div class="box product-price">
-                                    <div class="price-2">قیمت : <span>۱۴۰,۰۰۰ تومان</span></div>
+                                    <div class="price-2">قیمت : <span>${product.old_price} تومان</span></div>
                                     <div class="price-1">قیمت با تخفیف : <span>${product.price} تومان</span></div>
                                 </div>
                                 <div class="box product-property">
