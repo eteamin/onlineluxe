@@ -3568,6 +3568,7 @@ footer .footer_menus ul li a {
   border-color: #ffffff;
   border-radius: 5px;
   padding: 0.7rem;
+  background: #f8f7f7;
 }
 .article-info {
   /*display: flex;*/

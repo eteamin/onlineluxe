@@ -77,6 +77,16 @@ class RootController(BaseController):
         top = DBSession.query(Article).order_by(Article.views.desc()).limit(3).all()
         return dict(articles=articles, top=top, title=u'آنلاین لوکس - مجله')
 
+    @expose('onlinelux.templates.article')
+    def a(self, a_id, a_title):
+        article = DBSession.query(Article).filter(Article.id == a_id).one_or_none()
+        if not article:
+            abort(404)
+        top = DBSession.query(Article).order_by(Article.views.desc()).limit(3).all()
+        article.views = Article.views + 1
+        DBSession.flush()
+        return dict(top=top, article=article, title=u'مجله آنلاین لوکس - {}'.format(dash_for_space(article.title)))
+
     @expose('onlinelux.templates.subcategory')
     def search(self, query, **kwargs):
         page = kwargs.get('page')

@@ -4,19 +4,6 @@
 %>
 <section class="page-top">
     <div class="container">
-##         <div class="page-breadcrumb">
-##             <ol class="breadcrumb">
-##                 <li>
-##                     <a href="#">فروشگاه</a>
-##                 </li>
-##                 <li>
-##                     <a href="#">مجله</a>
-##                 </li>
-##                 <li class="active">
-##                     <a href="#">آخرین مطالب</a>
-##                 </li>
-##             </ol>
-##         </div>
     </div>
 </section>
 
