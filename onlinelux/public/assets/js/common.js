@@ -92,7 +92,7 @@ define([
                contentType: false,
                success : function(resp) {
                     if (resp == 'True') {
-                        window.location = base_url
+                        window.location = window.location.href
                     }
                     else {
                         loginError.text(resp.error);
