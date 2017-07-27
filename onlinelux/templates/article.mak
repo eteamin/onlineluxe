@@ -28,7 +28,7 @@
                 </div>
                 <div class="sidebar_content">
                     <ul class="news-list">
-                    <div class="col-md-9 col-sm-9 col-xs-9 pull-right " style="margin-top: 4rem;">
+                    <div class="col-md-9 col-sm-9 col-xs-12 pull-right " style="margin-top: 4rem;">
                         <div class="article-container margin-top">
                             <h1 class="padding-top-down article-title">${article.title}</h1>
                             <span class="padding-top-down">${JalaliDatetime(article.created).strftime('%A %d %B %Y')}</span>
@@ -42,7 +42,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-sm-3 col-xs-3 pull-left margin-top">
+                    <div class="col-md-3 col-sm-3 col-xs-12 pull-left margin-top">
                         <h5 class="padding-top-down">پر بازدیدترین ها</h5>
                         %for t in top:
                             <li class="article-container margin-top">
