@@ -3570,12 +3570,23 @@ footer .footer_menus ul li a {
   padding: 0.7rem;
   background: #f8f7f7;
 }
-.article-info {
-  /*display: flex;*/
+.article-title {
+  font-size: 2rem;
+}
+.article-description {
+  font-size: 1.5rem;
+  letter-spacing: 1px;
 }
 .article-view {
   margin-top: 1rem;
   float: left;
+}
+.btn-view-article {
+  font-size: 11px;
+}
+.image-border {
+    border-radius: 0.4rem;
+    width: 100%;
 }
 /*# sourceMappingURL=main.css.map */
 .bv-form .help-block{margin-bottom:0;font-size: 12px;}.nav-tabs li.bv-tab-success>a{color:#3c763d}.nav-tabs li.bv-tab-error>a{color:#a94442}

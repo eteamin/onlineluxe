@@ -82,7 +82,7 @@ class RootController(BaseController):
         article = DBSession.query(Article).filter(Article.id == a_id).one_or_none()
         if not article:
             abort(404)
-        top = DBSession.query(Article).order_by(Article.views.desc()).limit(3).all()
+        top = DBSession.query(Article).order_by(Article.views.desc()).limit(5).all()
         article.views = Article.views + 1
         DBSession.flush()
         return dict(top=top, article=article, title=u'مجله آنلاین لوکس - {}'.format(dash_for_space(article.title)))

@@ -28,7 +28,7 @@
     		<nav class="navbar-main">
     			<div class="container">
     				<div class="horizental-flex-container">
-    					<a href="" class="navbar-main_logo">
+    					<a href="${tg.url('/')}" class="navbar-main_logo">
     						<img src="${base_url}/assets/images/logo.png" alt="">
     					</a>
     					<!-- navbar-main_logo -->
