@@ -60,6 +60,7 @@ class RootController(BaseController):
         products = DBSession.\
             query(Product).\
             filter(Product.subcat_id == id).\
+            filter(Product.quantity > 0).\
             order_by(Product.price.desc()).\
             offset(offset).\
             all()
@@ -102,7 +103,8 @@ class RootController(BaseController):
         offset = (page - 1) * 9 if page else 0
         products = DBSession.\
             query(Product).\
-            filter(Product.name.contains(query)).\
+            filter(Product.name.contains(query)). \
+            filter(Product.quantity > 0). \
             order_by(Product.price.desc()).\
             offset(offset).\
             all()

@@ -49,7 +49,7 @@
                                     <a data-toggle="modal" data-target="#modaLogin" href="#"><i class="icon icon-cart3"></i></a>
                                 %endif
 
-    							<span class="add-to-cart__count"></span>
+##     							<span class="add-to-cart__count"></span>
     						</div>
                             <a href="${tg.url('/blog')}" class="compare">
     							<i class="glyphicon glyphicon-blackboard"></i>

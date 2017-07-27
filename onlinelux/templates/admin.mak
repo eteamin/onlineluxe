@@ -46,6 +46,9 @@
                                 <input class="form-control" id="href" name="name"  required type="text" placeholder="...">
 
                                 <label class="form-control" style="background: deepskyblue;" for="href">قیمت محصول</label>
+                                <input class="form-control" id="href" name="old_price"  required type="number" placeholder="تومان">
+
+                                <label class="form-control" style="background: deepskyblue;" for="href">قیمت با تخفیف </label>
                                 <input class="form-control" id="href" name="price"  required type="number" placeholder="تومان">
 
                                 <label class="form-control" style="background: deepskyblue;"  for="href">سایز</label>

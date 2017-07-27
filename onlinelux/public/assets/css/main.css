@@ -3588,5 +3588,25 @@ footer .footer_menus ul li a {
     border-radius: 0.4rem;
     width: 100%;
 }
+.btn-not-available {
+    display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center;
+  color: #fff;
+  padding: 1.5rem;
+  background-color: #ee124f;
+}
 /*# sourceMappingURL=main.css.map */
 .bv-form .help-block{margin-bottom:0;font-size: 12px;}.nav-tabs li.bv-tab-success>a{color:#3c763d}.nav-tabs li.bv-tab-error>a{color:#a94442}

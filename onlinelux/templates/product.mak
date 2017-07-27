@@ -136,13 +136,16 @@
                                 </div>
                                 <!-- product-guide -->
                                 <div class="box product-buy-btn">
+                                %if product.quantity > 0:
                                     %if 'user_id' in session:
                                         <a id="add-to-basket" class="btn btn-add-to-cart" onclick="return addToBasket();">افزودن به سبد خرید <i class="icon icon-cart3"></i></a>
                                     %else:
-                                        <a class="btn btn-add-to-cart" data-toggle="modal" data-target="#modaLogin" href="#">افزودن به سبد خرید <i class="icon icon-cart3"></i>
+                                        <a class="btn btn-add-to-cart" data-toggle="modal" data-target="#modaLogin" href="#">افزودن به سبد خرید <i class="icon icon-cart3"></i></a>
                                     %endif
+                                %else:
+                                    <a disabled class="btn btn-not-available ">محصول در انبار موجود نیست <i class="icon icon-cart3"></i></a>
+                                %endif
 
-                                   </a>
                                 </div>
                                 <!-- product-buy-btn -->
                             </div>
