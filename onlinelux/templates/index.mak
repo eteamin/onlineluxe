@@ -168,13 +168,13 @@
         <div class="row">
             <div class="sidebar col-md-3 col-sm-3 col-xs-12 pull-right">
                 <div class="page_section--title">
-                    <h5>آخرین اخبار</h5>
+                    <h5>آخرین موضوعات مجله</h5>
                 </div>
                 <div class="sidebar_content">
                     <ul class="news-list">
                         %for a in articles:
                             <li>
-                                <a href="">
+                                <a target="_blank" href="${base_url}/a/${a.id}/${dash_for_space(a.title)}">
                                     <img class="img-responsive" src="${base_url}/storage/${a.image}" alt="">
                                     <h3>${a.title}</h3>
                                     <span>${JalaliDatetime(a.created).strftime('%A %d %B %Y')}</span>
@@ -183,7 +183,7 @@
                         %endfor
                     </ul>
                     <div class="btn-more">
-                        <a href="">نمایش همه اخبار</a>
+                        <a target="_blank" href="${tg.url('/magazine')}">مجله آنلاین لوکس</a>
                     </div>
                 </div>
             </div>

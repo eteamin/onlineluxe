@@ -1,6 +1,8 @@
 <%inherit file="local:templates.master"/>
 <%
     from khayyam import JalaliDatetime
+    def dash_for_space(s):
+        return s.replace(' ', '-')
 %>
 
 <main class="page-main clearfix">
@@ -52,7 +54,7 @@
                                     <img class="img-responsive" src="${base_url}/storage/${t.image}" alt="">
                                 </a>
                                 <h6 class="padding-top-down">${t.description[:240]} ... </h6>
-                                <a class="btn btn-info margin-bottom">ادامه</a>
+                                <a class="btn btn-info btn-view-article margin-bottom" href="${base_url}/a/${t.id}/${dash_for_space(t.title)}">مشاهده</a>
                                 <div class="article-view">تعداد بازدید : <span>${t.views}</span></div>
                             </li>
                         %endfor
@@ -63,5 +65,5 @@
             </div>
 
     </div>
-
+    </div>
 </main>
