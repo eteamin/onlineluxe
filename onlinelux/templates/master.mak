@@ -4,10 +4,10 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>${title if title else ''}</title>
+    <title>${title}</title>
 
-    <meta name="description" content="تجربه ای متفاوت از خرید آنلاین بدلیجات"/>
-    <meta name="keywords" content="نیم ست,ست چوبی,انشگتر,دسنبد,ست,دستبند,بدلیجات"/>
+    <meta name="description" content="${description if description else title}"/>
+    <meta name="keywords" content="نیم ست،ست چوبی،انشگتر،دسنبد،ست،دستبند،بدلیجات"/>
     <link rel="canonical" href="http://onlinelux.ir" />
     <meta property="og:locale" content="fa_IR" />
     <meta property="og:type" content="website" />

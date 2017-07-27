@@ -35,7 +35,7 @@ class RootController(BaseController):
         latest = DBSession.query(Product).order_by(Product.id.desc()).limit(16).all()
         articles = DBSession.query(Article).order_by(Article.id.desc()).limit(2).all()
         top = []
-        return dict(latest=latest, articles=articles, top=top)
+        return dict(latest=latest, articles=articles, top=top, title='آنلاین لوکس - خرید بدلیجات')
 
     @expose('onlinelux.templates.product')
     def p(self, id, title):
@@ -43,7 +43,11 @@ class RootController(BaseController):
         if not product:
             abort(404)
 
-        return dict(product=product)
+        return dict(
+            product=product,
+            title=u'آنلاین لوکس - {}'.format(dash_for_space(product.name)),
+            description=product.description
+        )
 
     @expose('onlinelux.templates.subcategory')
     def s(self, id, title, **kwargs):
@@ -55,7 +59,7 @@ class RootController(BaseController):
             order_by(Product.price.desc()).\
             offset(offset).\
             all()
-        return dict(products=products)
+        return dict(products=products, title=u'آنلاین لوکس - {}'.format(dash_for_space(title)))
 
     @expose('onlinelux.templates.subcategory')
     def search(self, query, **kwargs):
@@ -67,12 +71,12 @@ class RootController(BaseController):
             order_by(Product.price.desc()).\
             offset(offset).\
             all()
-        return dict(products=products)
+        return dict(products=products, title=u'آنلاین لوکس - نتایج جستجوی {}'.format(dash_for_space(query)))
 
     @expose('onlinelux.templates.purchases')
     def purchases(self):
         purchases = DBSession.query(Purchase).filter(Purchase.user_id == User.current().user_id).all()
-        return dict(purchases=purchases)
+        return dict(purchases=purchases, title=u'آنلاین لوکس - سفارشات من')
 
     @expose('onlinelux.templates.basket')
     def basket(self):
@@ -82,7 +86,7 @@ class RootController(BaseController):
             order_by(Purchase.id.desc()).\
             first()
         basket = basket if basket and basket.status == 'Selection' and len(basket.product) > 0 else None
-        return dict(basket=basket, title=u'سبد خرید - آنلاین لوکس')
+        return dict(basket=basket, title=u'آنلاین لوکس - سبد خرید')
 
     @expose()
     def remove_from_basket(self, p_id):
@@ -168,7 +172,7 @@ class RootController(BaseController):
             first()
         if not basket or basket.status != 'Selection':
             redirect('/basket')
-        return dict(user=user, basket_id=basket_id)
+        return dict(user=user, basket_id=basket_id, title=u'آنلاین لوکس - تایید نهایی فاکتور {}'.format(basket.uid))
 
     @expose('json')
     def order_basket(self, **k):
