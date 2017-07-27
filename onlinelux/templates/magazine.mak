@@ -48,7 +48,7 @@
                                 <h6 class="padding-top-down">${a.description[:240]} ... </h6>
                                 <div class="article-info">
                                     <a class="btn btn-info margin-bottom" href="${base_url}/a/${a.id}/${dash_for_space(a.title)}">ادامه</a>
-                                    <div class="article-view">تعداد بازدید : <span>${a.views}</span></div>
+                                    <div class="article-view">تعداد بازدید: <span>${a.views}</span></div>
                                 </div>
                             </li>
                         %endfor
