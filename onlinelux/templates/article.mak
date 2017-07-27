@@ -45,17 +45,17 @@
                     </div>
 
                     <div class="col-md-3 col-sm-3 col-xs-12 pull-left margin-top">
-                        <h5 class="padding-top-down">پر بازدیدترین ها</h5>
-                        %for t in top:
+                        <h5 class="padding-top-down">مقالات مرتبط</h5>
+                        %for r in related:
                             <li class="article-container margin-top">
-                                <h5 class="padding-top-down">${t.title}</h5>
-                                <span class="padding-top-down">${JalaliDatetime(t.created).strftime('%A %d %B %Y')}</span>
+                                <h5 class="padding-top-down">${r.title}</h5>
+                                <span class="padding-top-down">${JalaliDatetime(r.created).strftime('%A %d %B %Y')}</span>
                                 <a class="padding-top-down" href="">
-                                    <img class="img-responsive" src="${base_url}/storage/${t.image}" alt="">
+                                    <img class="img-responsive" src="${base_url}/storage/${r.image}" alt="">
                                 </a>
-                                <h6 class="padding-top-down">${t.description[:240]} ... </h6>
-                                <a class="btn btn-info btn-view-article margin-bottom" href="${base_url}/a/${t.id}/${dash_for_space(t.title)}">مشاهده</a>
-                                <div class="article-view">تعداد بازدید : <span>${t.views}</span></div>
+                                <h6 class="padding-top-down">${r.description[:240]} ... </h6>
+                                <a class="btn btn-info btn-view-article margin-bottom" href="${base_url}/a/${r.id}/${dash_for_space(r.title)}">مشاهده</a>
+                                <div class="article-view">تعداد بازدید : <span>${r.views}</span></div>
                             </li>
                         %endfor
                     </div>

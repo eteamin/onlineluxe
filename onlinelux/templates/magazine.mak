@@ -37,7 +37,7 @@
                 <div class="sidebar_content">
                     <ul class="news-list">
                     <div class="col-md-9 col-xs-12 col-lg-12 pull-right" style="margin-top: 1rem;">
-                        <h5 class="padding-top-down text-center" >آخرین مطالب</h5>
+                        <h5 class="padding-top-down text-center" >آخرین مقالات</h5>
                         %for a in articles:
                             <li class="article-container margin-top">
                                 <h5 class="padding-top-down">${a.title}</h5>

@@ -168,7 +168,7 @@
         <div class="row">
             <div class="sidebar col-md-3 col-sm-3 col-xs-12 pull-right">
                 <div class="page_section--title">
-                    <h5>آخرین موضوعات مجله</h5>
+                    <h5>آخرین مقالات مجله</h5>
                 </div>
                 <div class="sidebar_content">
                     <ul class="news-list">
