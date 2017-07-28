@@ -284,14 +284,20 @@ ${c.text}
             $.get(
                 '${base_url}' + '/add_to_basket/' + '${product.id}',
                     function (resp) {
+                        if (resp.ok) {
+                            debugger;
                         action = false;
-                        swal({
-                              'title': 'آنلاین لوکس',
-                              'text': 'کالا به سبد خرید شما افزوده شد',
-                              'type': 'success',
-                              timer: 2500,
-                              showConfirmButton: false
-                        });
+                            swal({
+                                  'title': 'آنلاین لوکس',
+                                  'text': 'کالا به سبد خرید شما افزوده شد',
+                                  'type': 'success',
+                                  'timer': 2500,
+                                  'showConfirmButton': false
+                            });
+                        }
+                        else {
+                            window.location = window.location.href;
+                        }
                     }
             )
         }

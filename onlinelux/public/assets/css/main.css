@@ -7,6 +7,8 @@
 @import url(../libs/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css);
 @import url(../libs/raty/lib/jquery.raty.css);
 @import url(../fonts/icomoon/style.css);
+@import url(../libs/sweetalert/sweetalert.css);
+
 @font-face {
   font-family: 'yekan';
   src: url("../fonts/Yekan.eot?#") format("eot"), url("../fonts/Yekan.woff") format("woff"), url("../fonts/Yekan.ttf") format("truetype"), url("../fonts/Yekan.svg") format("svg");

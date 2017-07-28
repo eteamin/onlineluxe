@@ -163,16 +163,18 @@ class RootController(BaseController):
             order_by(Purchase.id.desc()). \
             first()
         product = DBSession.query(Product).filter(Product.id == p_id).one_or_none()
+        if product.quantity < 1:
+            return dict(ok=False)
         if basket and basket.status == 'Selection':
             if product in basket.product:
-                return dict()
+                return dict(ok=True)
             elif product not in basket.product:
                 basket.product.append(product)
                 tmp = basket.items
                 tmp[product.id] = 1
                 basket.items = tmp
                 DBSession.flush()
-            return dict()
+            return dict(ok=True)
         if not basket or basket.status != 'Selection':
             basket = Purchase(
                 user_id=user.user_id,
@@ -185,7 +187,7 @@ class RootController(BaseController):
             basket.items = tmp
             DBSession.add(basket)
             DBSession.flush()
-            return dict()
+            return dict(ok=True)
 
     @expose()
     def change_count(self, product_id, value):
@@ -232,7 +234,18 @@ class RootController(BaseController):
             order_by(Purchase.id.desc()). \
             first()
         if not basket or basket.status != 'Selection':
-            redirect('/')
+            return dict(ok=False, error='Invalid state')
+
+        out_of_stock = False
+        for p in basket.product:
+            if p.quantity < 1:
+                out_of_stock = True
+                basket.product.remove(p)
+            else:
+                p.quantity = Product.quantity - basket.items.get(str(p.id))
+        if out_of_stock:
+            DBSession.flush()
+            return dict(ok=False, error='Invalid state')
 
         dis_name, address, code, phone = k.get('name'), k.get('address'), k.get('code'), k.get('phone')
         user.display_name = dis_name
@@ -246,9 +259,9 @@ class RootController(BaseController):
         basket.status = 'Payment'
         try:
             DBSession.flush()
-            return dict(ok=True, payment_url=payment_url, authority=authority)
+            return dict(ok=True, paymentUrl=payment_url, authority=authority)
         except IntegrityError:
-            return dict(ok=False)
+            return dict(ok=False, error='Invalid state')
 
     @expose()
     def purchase_callback(self, **kwargs):
