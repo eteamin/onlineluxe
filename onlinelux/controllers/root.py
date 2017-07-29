@@ -299,6 +299,18 @@ class RootController(BaseController):
         DBSession.flush()
         redirect('/p/{}/{}'.format(product_id, product_title))
 
+    @expose('onlinelux.templates.login')
+    def login(self, came_from=None):
+        if request.identity:
+            redirect('/')
+        return dict(came_from=came_from)
+
+    @expose('onlinelux.templates.register')
+    def register(self):
+        if request.identity:
+            redirect('/')
+        return dict()
+
     @expose()
     def log_out(self):
         session.delete()
@@ -320,7 +332,7 @@ class RootController(BaseController):
         return HTTPFound(location=came_from)
 
     @expose('json')
-    def register(self, **kwargs):
+    def register_handler(self, **kwargs):
         username = kwargs.get('username')
         password = kwargs.get('password')
         DBSession.add(User(

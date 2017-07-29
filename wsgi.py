@@ -1,5 +1,5 @@
 import os
-APP_CONFIG = "/home/onlinelux/onlinelux/production.ini"
+APP_CONFIG = "/Users/etemin/workspace/onlinelux/development.ini"
 
 #Setup logging
 import logging.config

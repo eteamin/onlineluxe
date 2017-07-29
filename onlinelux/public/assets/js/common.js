@@ -79,11 +79,15 @@ define([
 		}
 	});
         loginValidator.on("success.form.bv", function (e) {
-            var loginError = $('#login-error');
-            loginError.css("display", "none");
             e.preventDefault();
             var username = $('#username').val();
             var password = $('#password').val();
+            login_(username, password)
+        });
+
+    function login_(username, password) {
+        var loginError = $('#login-error');
+            loginError.css("display", "none");
             var base_url = window.location.origin;
             $.ajax({
                url : base_url + '/login_handler?login=' + username + '&password=' + password,
@@ -100,8 +104,7 @@ define([
                     }
                 }
             });
-
-        });
+    }
 
     var registerValidator = $("#registerForm").bootstrapValidator({
 		feedbackIcons: {
@@ -141,29 +144,32 @@ define([
 		}
 	});
         registerValidator.on("success.form.bv", function (e) {
-            $('#register-error').css("display", "none");
             e.preventDefault();
             var username = $('#user_name').val();
             var password = $('#pass_word').val();
+            register_(username, password)
+        });
+        function register_(username, password) {
+            $('#register-error').css("display", "none");
             var base_url = window.location.origin;
             var formData = new FormData();
 	        formData.append('username', username);
 	        formData.append('password', password);
+	        debugger;
             $.ajax({
-               url : base_url + '/register',
+               url : base_url + '/register_handler',
                type : 'POST',
                data : formData,
                processData: false,
                contentType: false,
                success : function(resp) {
                     if (resp.ok) {
-                        window.location = base_url + '/login_handler?login=' + username + '&password=' + password
+                        login_(username, password)
                     }
                     else {
                         $('#register-error').css("display", "block");
                     }
                 }
             });
-
-        });
+        }
 });
