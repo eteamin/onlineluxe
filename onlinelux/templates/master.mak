@@ -1,24 +1,49 @@
 <!DOCTYPE html>
-<html lang="fa-IR">
+<html lang="fa" prefix="og: http://ogp.me/ns#">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>${title or ''}</title>
+    <meta name="description" content="
+    ${description or title or ''}
+"/>
+    <meta name="keywords"
+          content="${keywords or ''}"/>
 
-    <meta name="description" content="${description or title or ''}"/>
-    <meta name="keywords" content="${keywords or ''}"/>
-    <link rel="canonical" href="http://onlinelux.ir" />
-    <meta property="og:locale" content="fa_IR" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="آنلاین لوکس - خرید بدلیجات${title or ''}" />
-    <meta property="og:description" content="${description or title or ''}"/>
-    <meta property="og:url" content="http://onlinelux.ir" />
-    <meta property="og:image" content="http://onlinelux.ir/assets/images/logo.png"/>
-    <meta property="og:site_name" content="${title or ''}" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:description" content="${description or title or ''}" />
-    <meta name="twitter:title" content="${title or ''}" />
+    <!-- General META -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <meta http-equiv="content-language" content="fa"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+    <link rel="shortcut icon" href="${tg.url('/upload/favicon.ico')}"/>
+
+
+    <!-- Semantic META -->
+    <meta property="description" content="
+    ${description or title or ''}
+">
+    <meta property="og:url" content="http://onlinelux.ir/">
+    <meta property="og:title" content="${title or ''}">
+    <meta property="og:site_name" content="onlinelux">
+    <meta property="og:description" content="
+    ${description or title or ''}
+">
+    <meta property="og:image" content="${base_url}/assets/images/logo.png">
+    <meta property="og:image:secure_url" content="${base_url}/assets/images/logo.png">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="360">
+    <meta property="og:image:type" content="image/jpg">
+
+    <link rel="canonical" href="http://onlinelux.ir"/>
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="${title or ''}">
+    <meta name="twitter:description" content="
+    ${description or title or ''}
+">
+    <meta name="twitter:image" content="${base_url}/assets/images/logo.png">
         
     <link rel="stylesheet" href="${base_url}/assets/css/main.css">
 </head>
