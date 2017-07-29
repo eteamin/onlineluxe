@@ -92,12 +92,12 @@
     					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     						<ul class="nav navbar-nav pull-right">
                                 % for c in categories:
-    							<li class="active"><a href="#">${c.title}</a>
+    							<li class="active"><a href="#"><h1 class="navbar-category-header">${c.title}</h1></a>
     								<div class="navbar-megamenu">
     									<div class="container">
     										<ul>
                                                 %for s in c.subcategory:
-    											    <li><a href="${base_url}/s/${s.id}/${s.title}">${s.title}</a></li>
+    											    <li><a href="${base_url}/s/${s.id}/${s.title}"><h2 class="navbar-category-header2">${s.title}</h2></a></li>
                                                 %endfor
     										</ul>
     									</div>

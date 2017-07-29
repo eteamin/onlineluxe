@@ -3749,3 +3749,13 @@ html,body{
   -webkit-animation-name: fadeInUp;
   animation-name: fadeInUp;
 }
+.navbar-category-header {
+  color: #777;
+  font-size: 14px;
+  font-weight: 100;
+}
+.navbar-category-header2 {
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 100;
+}
