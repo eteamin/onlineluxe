@@ -81,15 +81,23 @@
                     <div class="form-group-lg">
 
                         <div class="form-group">
-                            <form action="" method="post" enctype="multipart/form-data" id="upload-article">
+                            <form action="${base_url}/area51/submit_article" method="post" enctype="multipart/form-data" id="upload-article">
                                 <label class="form-control" style="background: deepskyblue;" for="image">تصویر</label>
                                 <input class="form-control" id="image" name="image" required type="file">
 
                                 <label class="form-control" style="background: deepskyblue;" for="title">عنوان</label>
                                 <input class="form-control" id="title" name="title"  required type="text" placeholder="...">
 
+                                <label class="form-control" style="background: deepskyblue;" for="topic">دسته بندی</label>
+                                <select class="form-control" id="topic" name="topic_id" required>
+                                    %for t in topics:
+                                        <option value="${t.id}">${t.title}</option>
+                                    %endfor
+                                </select>
+
+
                                 <label class="form-control" style="background: deepskyblue;" for="description">توضیحات</label>
-                                <textarea class="form-control" id="description" name="description"  required></textarea>
+                                <textarea class="form-control" id="editor1" name="description"  required></textarea>
                                 <button class="btn btn-success" type="submit">Submit</button>
                             </form>
                         </div>
@@ -100,3 +108,11 @@
     </div>
 </section>
 <script data-main="assets/js/index.js" src="${base_url}/assets/libs/requirejs/require.js"></script>
+<script src="${tg.url('/assets/libs/ckeditor/ckeditor.js')}"></script>
+<script>
+    CKEDITOR.config.contentsLangDirection='rtl';
+    CKEDITOR.replace( 'editor1', {
+        language: 'fa',
+        uiColor: '#9AB8F3'
+    } );
+</script>

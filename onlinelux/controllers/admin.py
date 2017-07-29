@@ -3,7 +3,7 @@
 
 from tg import expose, predicates, redirect
 
-from onlinelux.model import DBSession, SubCategory, Product
+from onlinelux.model import DBSession, SubCategory, Product, Article, Topic
 
 from onlinelux.lib.base import BaseController
 from onlinelux.lib.store import StorageManager
@@ -17,7 +17,8 @@ class Area51Controller(BaseController):
     @expose('onlinelux.templates.admin')
     def index(self):
         subcategories = DBSession.query(SubCategory).all()
-        return dict(subcategories=subcategories)
+        topics = DBSession.query(Topic).all()
+        return dict(subcategories=subcategories, topics=topics)
 
     @expose()
     def submit_product(self, **kw):
@@ -31,3 +32,14 @@ class Area51Controller(BaseController):
         DBSession.flush()
         redirect('/area51')
 
+    @expose()
+    def submit_article(self, **kw):
+        image = StorageManager().store(kw.get('image'))
+        del kw['image']
+        a = Article()
+        a.image = image
+        for k, v in kw.items():
+            a.__setattr__(k, v)
+        DBSession.add(a)
+        DBSession.flush()
+        redirect('/area51')
