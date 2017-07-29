@@ -53,7 +53,7 @@
                                 <a class="padding-top-down" href="">
                                     <img class="img-responsive" src="${base_url}/storage/${r.image}" alt="">
                                 </a>
-                                <h6 class="padding-top-down">${r.description[:240]} ... </h6>
+                                <h6 class="padding-top-down">${r.description[:240] | n} ... </h6>
                                 <a class="btn btn-info btn-view-article margin-bottom" href="${base_url}/a/${r.id}/${dash_for_space(r.title)}">مشاهده</a>
                                 <div class="article-view">تعداد بازدید : <span>${r.views}</span></div>
                             </li>

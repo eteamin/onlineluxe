@@ -45,7 +45,7 @@
                                 <a class="padding-top-down" href="">
                                     <img class="img-responsive image-border" src="${base_url}/storage/${a.image}" alt="">
                                 </a>
-                                <h6 class="padding-top-down">${a.description[:240]} ... </h6>
+                                <h6 class="padding-top-down">${a.description[:240] | n} ... </h6>
                                 <div class="article-info">
                                     <a class="btn btn-info margin-bottom" href="${base_url}/a/${a.id}/${dash_for_space(a.title)}">ادامه</a>
                                     <div class="article-view">تعداد بازدید: <span>${a.views}</span></div>
@@ -63,7 +63,7 @@
                                 <a class="padding-top-down" href="">
                                     <img class="img-responsive image-border" src="${base_url}/storage/${t.image}" alt="">
                                 </a>
-                                <h6 class="padding-top-down">${t.description[:150]} ... </h6>
+                                <h6 class="padding-top-down">${t.description[:150] | n} ... </h6>
                                 <a class="btn btn-info btn-view-article margin-bottom" href="${base_url}/a/${t.id}/${dash_for_space(t.title)}">مشاهده</a>
                                 <div class="article-view">تعداد بازدید : <span>${t.views}</span></div>
                             </li>
