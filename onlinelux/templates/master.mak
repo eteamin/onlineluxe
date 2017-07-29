@@ -14,6 +14,7 @@
     <meta property="og:title" content="آنلاین لوکس - خرید بدلیجات" />
     <meta property="og:description" content="تجربه ای متفاوت از خرید آنلاین بدلیجات"/>
     <meta property="og:url" content="http://onlinelux.ir" />
+    <meta property="og:image" content="http://onlinelux.ir/assets/images/logo.png"/>
     <meta property="og:site_name" content="آنلاین لوکس - خرید بدلیجات" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:description" content="تجربه ای متفاوت از خرید آنلاین بدلیجات" />

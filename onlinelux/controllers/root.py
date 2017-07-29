@@ -35,7 +35,14 @@ class RootController(BaseController):
         latest = DBSession.query(Product).order_by(Product.id.desc()).limit(16).all()
         articles = DBSession.query(Article).order_by(Article.id.desc()).limit(2).all()
         top = []
-        return dict(latest=latest, articles=articles, top=top, title='آنلاین لوکس - خرید بدلیجات')
+        return dict(
+            latest=latest,
+            articles=articles,
+            top=top,
+            title='آنلاین لوکس - خرید بدلیجات',
+            description=u'''خرید بدلیجات
+             (ست، نیم ست، دستبند، گوشواره، ...) با کیفیت و مرغوب با قیمت مناسب و پشتیبانی فروش ۲۴ ساعته '''
+        )
 
     @expose('onlinelux.templates.product')
     def p(self, id, title):
