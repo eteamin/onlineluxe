@@ -75,7 +75,7 @@
                     %endfor
                     <div class="b1 col-md-4 col-xs-12 pull-left">
                         <div class="banner_photo">
-                            <a href=""><img class="img-responsive" src="${base_url}/upload/telegram.png" alt=""></a>
+                            <a href=""><img class="img-responsive" src="${base_url}/upload/telegram.jpg" alt=""></a>
                         </div>
                     </div>
 
