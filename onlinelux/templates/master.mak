@@ -7,18 +7,18 @@
     <title>${title or ''}</title>
 
     <meta name="description" content="${description or title or ''}"/>
-    <meta name="keywords" content="نیم ست،ست چوبی،انشگتر،دسنبد،ست،دستبند،بدلیجات"/>
+    <meta name="keywords" content="${keywords or ''}"/>
     <link rel="canonical" href="http://onlinelux.ir" />
     <meta property="og:locale" content="fa_IR" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="آنلاین لوکس - خرید بدلیجات" />
-    <meta property="og:description" content="تجربه ای متفاوت از خرید آنلاین بدلیجات"/>
+    <meta property="og:title" content="آنلاین لوکس - خرید بدلیجات${title or ''}" />
+    <meta property="og:description" content="${description or title or ''}"/>
     <meta property="og:url" content="http://onlinelux.ir" />
     <meta property="og:image" content="http://onlinelux.ir/assets/images/logo.png"/>
-    <meta property="og:site_name" content="آنلاین لوکس - خرید بدلیجات" />
+    <meta property="og:site_name" content="${title or ''}" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:description" content="تجربه ای متفاوت از خرید آنلاین بدلیجات" />
-    <meta name="twitter:title" content="آنلاین لوکس - خرید بدلیجات" />
+    <meta name="twitter:description" content="${description or title or ''}" />
+    <meta name="twitter:title" content="${title or ''}" />
         
     <link rel="stylesheet" href="${base_url}/assets/css/main.css">
 </head>
