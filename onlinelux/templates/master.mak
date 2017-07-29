@@ -170,11 +170,11 @@
                                     <label for="" style="font-size: 13px;">نام کاربری</label>
                                     <input id="user_name" type="text" class="form-control" name="user_name" placeholder="">
                                 </div>
-                                <div class="form-group has-feedback" style="width: 75%;">
+                                <div class="form-group has-feedback" style="width: 100%;">
                                     <label for="" style="font-size: 13px;">رمز عبور:</label>
                                     <input id="pass_word" type="password" class="form-control" name="pass_word" placeholder="">
                                 </div>
-                                <div class="form-group has-feedback" style="width: 75%;">
+                                <div class="form-group has-feedback" style="width: 100%;">
                                     <label for="" style="font-size: 13px;">تکرار رمز عبور:</label>
                                     <input id="confirm_password" type="password" class="form-control" name="confirm_password" placeholder="">
                                 </div>
