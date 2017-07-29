@@ -124,7 +124,7 @@ class RootController(BaseController):
     @expose('onlinelux.templates.purchases')
     def purchases(self):
         purchases = DBSession.query(Purchase).filter(Purchase.user_id == User.current().user_id).all()
-        return dict(purchases=purchases, title=u'آنلاین لوکس - سفارشات من')
+        return dict(purchases=purchases, title=u' آنلاین لوکس - سفارشات من')
 
     @expose('onlinelux.templates.basket')
     def basket(self):
