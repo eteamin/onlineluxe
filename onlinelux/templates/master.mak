@@ -172,50 +172,50 @@
     					</div>
     				</div>
     				<div class="modal-footer">
-                        <a href="#" class="btn-register" data-dismiss="modal" data-toggle="modal" data-target="#modaRegister">هنوز عضو سایت نیستید؟ ثبت نام</a>
-                        <a target="_blank" href="https://t.me/onlineluxRegistrationBot" class="btn-register btn-info">ثبت نام آسان با حساب کاربری تلگرام!</a>
+                        <a target="_blank" href="https://t.me/onlineluxRegistrationBot" class="btn-telegram-register">ثبت نام آسان با حساب کاربری تلگرام!</a>
+                        <a href="${tg.url('/register')}" class="btn-register" >ثبت نام از طریق سایت</a>
     				</div>
     			</div>
     		</div>
     	</div>
-
-    	<div class="modal fade" id="modaRegister" tabindex="-1" role="dialog" aria-labelledby="modaRegister">
-    		<div class="modal-dialog" role="document">
-    			<div class="modal-content">
-    				<div class="modal-body">
-    					<div class="modal-body-head">
-    							<i style="cursor:pointer; margin-right: 120%;font-size:35px;" class="icon icon-cancel-circle" data-dismiss="modal"></i>
-
-    						<div class="head--icon">
-    							<i class="icon icon-user"></i>
-    						</div>
-    						<h4>ثبت نام در آنلاین لوکس</h4>
-    					</div>
-    					<div class="modal-body-login has-feedback">
-    						<form id="registerForm" action="http://localhost:8080/register_handler" method="post">
-    						    <h6 id="register-error" style="color:#a94442; display:none;"> نام کاربری قبلا ثبت شده است</h6>
-                                <div class="form-group has-feedback" style="width: 75%;">
-                                    <label for="" style="font-size: 13px;">نام کاربری</label>
-                                    <input id="user_name" type="text" class="form-control" name="user_name" placeholder="">
-                                </div>
-                                <div class="form-group has-feedback" style="width: 100%;">
-                                    <label for="" style="font-size: 13px;">رمز عبور:</label>
-                                    <input id="pass_word" type="password" class="form-control" name="pass_word" placeholder="">
-                                </div>
-                                <div class="form-group has-feedback" style="width: 100%;">
-                                    <label for="" style="font-size: 13px;">تکرار رمز عبور:</label>
-                                    <input id="confirm_password" type="password" class="form-control" name="confirm_password" placeholder="">
-                                </div>
-    							<button type="submit">ثبت نام</button>
-    						</form>
-    					</div>
-    				</div>
-    				<div class="modal-footer">
-                        <a href="#" class="btn-register" data-dismiss="modal" data-toggle="modal" data-target="#modaLogin">قبلا ثبت نام کرده اید؟ وارد شوید</a>
-    				</div>
-    			</div>
-    		</div>
-    	</div>
+##
+##     	<div class="modal fade" id="modaRegister" tabindex="-1" role="dialog" aria-labelledby="modaRegister">
+##     		<div class="modal-dialog" role="document">
+##     			<div class="modal-content">
+##     				<div class="modal-body">
+##     					<div class="modal-body-head">
+##     							<i style="cursor:pointer; margin-right: 120%;font-size:35px;" class="icon icon-cancel-circle" data-dismiss="modal"></i>
+##
+##     						<div class="head--icon">
+##     							<i class="icon icon-user"></i>
+##     						</div>
+##     						<h4>ثبت نام در آنلاین لوکس</h4>
+##     					</div>
+##     					<div class="modal-body-login has-feedback">
+##     						<form id="registerForm" action="http://localhost:8080/register_handler" method="post">
+##     						    <h6 id="register-error" style="color:#a94442; display:none;"> نام کاربری قبلا ثبت شده است</h6>
+##                                 <div class="form-group has-feedback" style="width: 75%;">
+##                                     <label for="" style="font-size: 13px;">نام کاربری</label>
+##                                     <input id="user_name" type="text" class="form-control" name="user_name" placeholder="">
+##                                 </div>
+##                                 <div class="form-group has-feedback" style="width: 100%;">
+##                                     <label for="" style="font-size: 13px;">رمز عبور:</label>
+##                                     <input id="pass_word" type="password" class="form-control" name="pass_word" placeholder="">
+##                                 </div>
+##                                 <div class="form-group has-feedback" style="width: 100%;">
+##                                     <label for="" style="font-size: 13px;">تکرار رمز عبور:</label>
+##                                     <input id="confirm_password" type="password" class="form-control" name="confirm_password" placeholder="">
+##                                 </div>
+##     							<button type="submit">ثبت نام</button>
+##     						</form>
+##     					</div>
+##     				</div>
+##     				<div class="modal-footer">
+##                         <a href="#" class="btn-register" data-dismiss="modal" data-toggle="modal" data-target="#modaLogin">قبلا ثبت نام کرده اید؟ وارد شوید</a>
+##     				</div>
+##     			</div>
+##     		</div>
+##     	</div>
 
     </header>
     ${next.body()}

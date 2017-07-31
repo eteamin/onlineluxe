@@ -987,6 +987,26 @@ header #modaLogin .modal-footer .btn-register {
   border-radius: 0 0 0.4rem 0.4rem;
 }
 
+header #modaLogin .modal-footer .btn-telegram-register {
+  text-align: center;
+  background-color: #ef6c00;
+  padding: 2rem;
+  font-size: 1.5rem;
+  color: #fff;
+  display: block;
+  border-radius: 0 0 0.4rem 0.4rem;
+}
+header #modaLogin .modal-footer .btn- {
+  text-align: center;
+  background-color: #397fb5;
+  padding: 2rem;
+  font-size: 1.5rem;
+  color: #fff;
+  display: block;
+  border-radius: 0 0 0.4rem 0.4rem;
+}
+
+
 
 
 header #modaRegister .modal-body {

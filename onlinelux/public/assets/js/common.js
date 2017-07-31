@@ -105,50 +105,50 @@ define([
                 }
             });
     }
-
-    var registerValidator = $("#registerForm").bootstrapValidator({
-		feedbackIcons: {
-			valid: "glyphicon glyphicon-ok",
-			invalid: "glyphicon glyphicon-remove",
-			validating: "glyphicon glyphicon-refresh"
-		},
-		fields: {
-			user_name: {
-				message: "نام کاربری را وارد کنید.",
-				validators: {
-					notEmpty: {
-						message: "نام کاربری را وارد کنید."
-					}
-				}
-			},
-			pass_word: {
-				message: "رمز عبور را وارد کنید.",
-				validators: {
-					notEmpty: {
-						message: "رمز عبور را وارد کنید."
-					}
-				}
-			},
-			confirm_password: {
-				message: "تکرار رمز عبور را وارد کنید.",
-				validators: {
-					notEmpty: {
-						message: "رمز عبور را وارد کنید."
-					},
-                    identical: {
-						field: 'pass_word',
-						message: 'رمز عبور با یکدیگر مطابقت ندارد'
-					}
-				}
-			}
-		}
-	});
-        registerValidator.on("success.form.bv", function (e) {
-            e.preventDefault();
-            var username = $('#user_name').val();
-            var password = $('#pass_word').val();
-            register_(username, password)
-        });
+    //
+    // var registerValidator = $("#registerForm").bootstrapValidator({
+	// 	feedbackIcons: {
+	// 		valid: "glyphicon glyphicon-ok",
+	// 		invalid: "glyphicon glyphicon-remove",
+	// 		validating: "glyphicon glyphicon-refresh"
+	// 	},
+	// 	fields: {
+	// 		user_name: {
+	// 			message: "نام کاربری را وارد کنید.",
+	// 			validators: {
+	// 				notEmpty: {
+	// 					message: "نام کاربری را وارد کنید."
+	// 				}
+	// 			}
+	// 		},
+	// 		pass_word: {
+	// 			message: "رمز عبور را وارد کنید.",
+	// 			validators: {
+	// 				notEmpty: {
+	// 					message: "رمز عبور را وارد کنید."
+	// 				}
+	// 			}
+	// 		},
+	// 		confirm_password: {
+	// 			message: "تکرار رمز عبور را وارد کنید.",
+	// 			validators: {
+	// 				notEmpty: {
+	// 					message: "رمز عبور را وارد کنید."
+	// 				},
+     //                identical: {
+	// 					field: 'pass_word',
+	// 					message: 'رمز عبور با یکدیگر مطابقت ندارد'
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// });
+     //    registerValidator.on("success.form.bv", function (e) {
+     //        e.preventDefault();
+     //        var username = $('#user_name').val();
+     //        var password = $('#pass_word').val();
+     //        register_(username, password)
+     //    });
         function register_(username, password) {
             $('#register-error').css("display", "none");
             var base_url = window.location.origin;

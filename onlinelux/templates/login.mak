@@ -9,6 +9,7 @@
                     <input name="user" type="text" placeholder="نام کاربری">
                     <input type="password" name="password" placeholder="رمز عبور">
                     <button class="btn btn-info btn-block login" onclick="tryLogin()" type="button">ورود</button>
+                    <button type="button" onclick="window.location = 'https://t.me/onlineluxRegistrationBot'" class="btn btn-block login">ثبت نام آسان با تلگرام!</button>
                     <button class="btn btn-success btn-block login" onclick="window.location = '${base_url}' + '/register'" type="button">هنوز ثبت نام نکرده اید؟</button>
                 </form>
             </div>

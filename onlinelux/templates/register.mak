@@ -10,6 +10,7 @@
                     <input type="password" name="page_password" placeholder="رمز عبور">
                     <input type="password" name="page_confirmPassword" placeholder="تکرار رمز عبور">
                     <button class="btn btn-info btn-block login" onclick="tryRegister()" type="button">ثبت نام</button>
+                    <button type="button" onclick="window.location = 'https://t.me/onlineluxRegistrationBot'" class="btn btn-block login">ثبت نام آسان با تلگرام!</button>
                     <button class="btn btn-success btn-block login" onclick="window.location = '${base_url}' + '/login'" type="button">قبلا ثبت نام کرده اید؟</button>
                 </form>
             </div>
