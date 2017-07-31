@@ -173,6 +173,7 @@
     				</div>
     				<div class="modal-footer">
                         <a href="#" class="btn-register" data-dismiss="modal" data-toggle="modal" data-target="#modaRegister">هنوز عضو سایت نیستید؟ ثبت نام</a>
+                        <a target="_blank" href="https://t.me/onlineluxRegistrationBot" class="btn-register btn-info">ثبت نام آسان با حساب کاربری تلگرام!</a>
     				</div>
     			</div>
     		</div>
