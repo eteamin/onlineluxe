@@ -40,8 +40,7 @@ class RootController(BaseController):
             articles=articles,
             top=top,
             title='آنلاین لوکس - خرید بدلیجات',
-            description=u'''خرید بدلیجات
-             (ست، نیم ست، دستبند، گوشواره، ...) با کیفیت و مرغوب با قیمت مناسب و پشتیبانی فروش ۲۴ ساعته '''
+            description=u'خرید ست، نیم ست، دستبند، گوشواره'
         )
 
     @expose('onlinelux.templates.product')
