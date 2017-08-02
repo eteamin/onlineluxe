@@ -6,8 +6,8 @@
             <div class="avatar"></div>
             <div class="form-box">
                 <form action="" method="">
-                    <input name="user" type="text" placeholder="نام کاربری">
-                    <input type="password" name="password" placeholder="رمز عبور">
+                    <input name="login-page-name" type="text" placeholder="نام کاربری">
+                    <input type="password" name="login-page-password" placeholder="رمز عبور">
                     <button class="btn btn-info btn-block login" onclick="tryLogin()" type="button">ورود</button>
                     <button type="button" onclick="window.location = 'https://t.me/onlineluxRegistrationBot'" class="btn btn-block login">ثبت نام آسان با تلگرام!</button>
                     <button class="btn btn-success btn-block login" onclick="window.location = '${base_url}' + '/register'" type="button">هنوز ثبت نام نکرده اید؟</button>
@@ -20,8 +20,8 @@
 <script>
     function tryLogin() {
 
-        var textField = $("input[name=user]");
-        var password = $("input[name=password]");
+        var textField = $("input[name=login-page-name]");
+        var password = $("input[name=login-page-password]");
 
         if (textField.val() != "" && password.val() != "") {
             $.ajax({
