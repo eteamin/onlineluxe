@@ -19,6 +19,7 @@
 }
 html {
   font-size: 62%;
+  min-height: 100%;
 }
 
 body {
@@ -3778,4 +3779,15 @@ html,body{
   color: #ffffff;
   font-size: 13px;
   font-weight: 100;
+}
+
+.sticky-bottom-menu {
+  background-color: #cce4ee;
+  position: fixed !important;
+  z-index: 99;
+  width: 100%;
+  height: 10%;
+  opacity: 1;
+  bottom: 0;
+  display: none;
 }
